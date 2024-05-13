@@ -7,4 +7,34 @@ body {
   font-family: 'Inter', sans-serif;
   font-size: 16px;
   line-height: 1.2;
+  color: #1e2532;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+@media (min-width: 640px) {
+  .title {
+    font-size: 32px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 0 24px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding: 0 48px;
+  }
 }
