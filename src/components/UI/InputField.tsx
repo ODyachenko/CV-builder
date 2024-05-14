@@ -8,15 +8,22 @@ const InputField: FC<InputFieldType> = ({
   type,
   label,
   placeholder,
+  name,
+  autoComplete,
 }) => {
   return (
     <label className={`${className ? className : ''}`}>
-      <span>{label}</span>
+      <span className="block text-sm font-light text-priamry-gray mb-1">
+        {label}
+      </span>
       <input
+        className="w-full bg-field-bg rounded-sm py-3 px-4 focus:outline-none focus:border-b-2 border-solid border-primary-blue"
         type={type}
         value={value}
         onChange={handler}
         placeholder={placeholder}
+        name={name}
+        autoComplete={autoComplete}
       />
     </label>
   );

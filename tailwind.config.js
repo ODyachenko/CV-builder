@@ -5,7 +5,10 @@ export default {
     extend: {
       colors: {
         'primary-blue': '#1a91f0',
+        'secondary-blue': '#157aca',
         'priamry-gray': '#828ba2',
+        'field-bg': '#eff2f9',
+        'dark-gray': '#656e83',
       },
     },
   },
