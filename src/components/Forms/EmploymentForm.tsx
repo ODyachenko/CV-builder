@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import InputField from '../UI/InputField';
 import TextArea from '../UI/TextArea';
+import { useAppSelector } from '../../hooks/hooks';
 
 const EmploymentForm: FC = () => {
   return (
@@ -21,7 +22,7 @@ const EmploymentForm: FC = () => {
         </fieldset>
         <InputField label="City" value="" handler={() => true} />
       </fieldset>
-      <TextArea label="Description" />
+      <TextArea value="" handler={() => true} label="Description" />
     </form>
   );
 };

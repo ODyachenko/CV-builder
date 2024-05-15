@@ -1,14 +1,17 @@
 import React, { FC } from 'react';
 import InputField from '../UI/InputField';
+import { useAppSelector } from '../../hooks/hooks';
 
 const PersonalDetailsForm: FC = () => {
+  const { CV } = useAppSelector((state) => state.CVSLice);
+
   return (
     <form action="" className="mb-10">
       <h2 className="subtitle mb-5">Personal Details</h2>
       <fieldset className="grid grid-cols-2 gap-6">
         <InputField
           label="Job Title"
-          value=""
+          value={CV.jobTitle}
           handler={() => true}
           placeholder="e.g. Teacher"
         />
@@ -32,17 +35,40 @@ const PersonalDetailsForm: FC = () => {
             Upload Photo
           </button>
         </div>
-        <InputField label="First Name" value="" handler={() => true} />
-        <InputField label="Last Name" value="" handler={() => true} />
-        <InputField label="Email" value="" handler={() => true} type="email" />
-        <InputField label="Phone" value="" handler={() => true} type="phone" />
+        <InputField
+          label="First Name"
+          value={CV.firstName}
+          handler={() => true}
+        />
+        <InputField
+          label="Last Name"
+          value={CV.lastName}
+          handler={() => true}
+        />
+        <InputField
+          label="Email"
+          value={CV.email}
+          handler={() => true}
+          type="email"
+        />
+        <InputField
+          label="Phone"
+          value={CV.phone}
+          handler={() => true}
+          type="phone"
+        />
         <InputField
           label="Country"
-          value=""
+          value={CV.country}
           handler={() => true}
           name="country"
         />
-        <InputField label="City" value="" handler={() => true} name="city" />
+        <InputField
+          label="City"
+          value={CV.city}
+          handler={() => true}
+          name="city"
+        />
       </fieldset>
     </form>
   );

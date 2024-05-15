@@ -14,6 +14,8 @@ export type InputFieldType = {
 export type TextAreaType = {
   label?: string;
   className?: string;
+  value: string;
+  handler: () => void;
 };
 
 export type OptionsType = {
@@ -47,9 +49,59 @@ export type DocumentActions = {
   value: string;
 };
 
+export type EmploymentType = {
+  id: number;
+  jobTitle: string;
+  employer: string;
+  startDate: string;
+  endDate: string;
+  city: string;
+  description: string;
+};
+
+export type EducationType = {
+  id: number;
+  school: string;
+  degree: string;
+  startDate: string;
+  endDate: string;
+  city: string;
+  description: string;
+};
+
+export type SocialLinkType = {
+  id: number;
+  label: string;
+  link: string;
+};
+
+export type LanguageType = {
+  id: number;
+  language: string;
+  level: string;
+};
+
 export type CVBlockType = {
   title: string;
   text?: string;
-  form: React.ReactNode;
   name: string;
+  children: React.ReactNode;
+};
+
+export type CVType = {
+  id: number;
+  name: string;
+  jobTitle: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  country: string;
+  city: string;
+  profile: string;
+  employments: EmploymentType[];
+  educations: EducationType[];
+  links: SocialLinkType[];
+  skills: string[];
+  languages: LanguageType[];
 };
