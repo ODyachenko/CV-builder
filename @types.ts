@@ -2,7 +2,7 @@ import React from 'react';
 
 export type InputFieldType = {
   value: string;
-  handler: () => void;
+  handler: (evt: React.ChangeEvent<HTMLInputElement>) => void;
   className?: string;
   label?: string;
   placeholder?: string;
@@ -15,7 +15,7 @@ export type TextAreaType = {
   label?: string;
   className?: string;
   value: string;
-  handler: () => void;
+  handler: (evt: React.ChangeEvent<HTMLInputElement>, key: string) => void;
 };
 
 export type OptionsType = {
@@ -28,6 +28,7 @@ export type SelectType = {
   label?: string;
   placeholder?: string;
   className?: string;
+  value: string;
 };
 
 export type BtnType = {
@@ -80,6 +81,11 @@ export type LanguageType = {
   language: string;
   level: string;
 };
+export type SkillType = {
+  id: number;
+  skill: string;
+  level: string;
+};
 
 export type CVBlockType = {
   title: string;
@@ -102,6 +108,6 @@ export type CVType = {
   employments: EmploymentType[];
   educations: EducationType[];
   links: SocialLinkType[];
-  skills: string[];
+  skills: SkillType[];
   languages: LanguageType[];
 };

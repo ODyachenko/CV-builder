@@ -17,6 +17,7 @@ const SelectField: FC<SelectType> = ({
   label,
   options,
   placeholder,
+  value,
 }) => {
   return (
     <label className={`${className ? className : ''}`}>

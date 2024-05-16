@@ -8,6 +8,7 @@ const StockholmTemplate: FC<CVType> = ({
   lastName,
   jobTitle,
   email,
+  phone,
   city,
   country,
   profile,
@@ -18,7 +19,7 @@ const StockholmTemplate: FC<CVType> = ({
   languages,
 }) => {
   return (
-    <div className=" bg-white rounded-lg py-10 px-14">
+    <div className="leading-snug bg-white rounded-lg py-10 px-14">
       <div className="mb-9">
         <img src="" alt="" />
         <div>
@@ -91,10 +92,16 @@ const StockholmTemplate: FC<CVType> = ({
         <div className="col">
           <div className="mb-9">
             <h3 className="font-bold mb-2">Details</h3>
-            <h4>{city}</h4>
-            <h4>{country}</h4>
-            <a className="text-primary-blue" href={`mailto:${email}`}>
+            <h4 className="mb-2">{city}</h4>
+            <h4 className="mb-2">{country}</h4>
+            <a
+              className="block text-primary-blue mb-2"
+              href={`mailto:${email}`}
+            >
               {email}
+            </a>
+            <a className="block text-primary-blue" href={`tel:${phone}`}>
+              {phone}
             </a>
           </div>
           <div className="mb-9">
@@ -115,9 +122,9 @@ const StockholmTemplate: FC<CVType> = ({
               {skills.map((skill, index) => (
                 <li
                   key={index}
-                  className="border-b-2 border-solid border-primary-blue pb-3 mb-3"
+                  className="border-b-4 border-solid border-primary-blue pb-3 mb-3"
                 >
-                  {skill}
+                  {skill.skill}
                 </li>
               ))}
             </ul>
@@ -128,7 +135,7 @@ const StockholmTemplate: FC<CVType> = ({
               {languages.map((language) => (
                 <li
                   key={language.id}
-                  className="border-b-2 border-solid border-primary-blue pb-3 mb-3"
+                  className="border-b-4 border-solid border-primary-blue pb-3 mb-3"
                 >
                   {language.language}
                 </li>

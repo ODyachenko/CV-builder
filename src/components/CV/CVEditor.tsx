@@ -2,21 +2,25 @@ import { FC } from 'react';
 import Layout from '../Layout';
 import TextArea from '../UI/TextArea';
 import PersonalDetailsForm from '../Forms/PersonalDetailsForm';
-import EmploymentForm from '../Forms/EmploymentForm';
-import EducationForm from '../Forms/EducationForm';
-import SocialLinksForm from '../Forms/SocialLinksForm';
-import LanguagesForm from '../Forms/LanguagesForm';
-import SkillForm from '../Forms/SkillForm';
 import CVBlock from './CVBlock';
-import { useAppSelector } from '../../hooks/hooks';
-import EmploymentList from '../Lists/EmploymentList';
-import EducationList from '../Lists/EducationList';
-import SocialList from '../Lists/SocialList';
-import SkillList from '../Lists/SkillList';
-import LanguageList from '../Lists/LanguageList';
+import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
+import EmploymentList from '../Lists/EmploymentList/EmploymentList';
+import EducationList from '../Lists/EducationList/EducationList';
+import SocialList from '../Lists/SocialList/SocialList';
+import SkillList from '../Lists/SkillList/SkillList';
+import LanguageList from '../Lists/LanguageList/LanguageList';
+import { setCV } from '../../redux/slices/CVSlice';
 
 const CVEditor: FC = () => {
   const { CV } = useAppSelector((state) => state.CVSLice);
+  const dispatch = useAppDispatch();
+
+  const onChangeHandler = (
+    evt: React.ChangeEvent<HTMLInputElement>,
+    key: string
+  ) => {
+    dispatch(setCV({ ...CV, [key]: evt.target.value }));
+  };
 
   return (
     <Layout>
@@ -25,7 +29,7 @@ const CVEditor: FC = () => {
           className="font-bold text-xl text-center mb-2 focus:outline-none focus:border-b-2 border-solid border-primary-blue"
           type="text"
           value={CV.name}
-          // defaultValue="Chemist"
+          onChange={(evt) => onChangeHandler(evt, 'name')}
         />
         <span className="block font-light text-priamry-gray">English</span>
       </div>
@@ -37,7 +41,10 @@ const CVEditor: FC = () => {
           your role, experience & most importantly - your biggest achievements,
           best qualities and skills.
         </p>
-        <TextArea value={CV.profile} handler={() => true} />
+        <TextArea
+          value={CV.profile}
+          handler={(evt) => onChangeHandler(evt, 'profile')}
+        />
         <div className="flex justify-between gap-3">
           <p className="text-sm leading-snug text-priamry-gray">
             Recruiter tip: write 400-600 characters to increase interview
@@ -53,7 +60,7 @@ const CVEditor: FC = () => {
           note your achievements, if possible - use numbers/facts (Achieved X,
           measured by Y, by doing Z)."
       >
-        <EmploymentList list={CV.employments} form={<EmploymentForm />} />
+        <EmploymentList list={CV.employments} />
       </CVBlock>
 
       <CVBlock
@@ -62,7 +69,7 @@ const CVEditor: FC = () => {
         text="A varied education on your resume sums up the value that your
         learnings and background will bring to job."
       >
-        <EducationList list={CV.educations} form={<EducationForm />} />
+        <EducationList list={CV.educations} />
       </CVBlock>
 
       <CVBlock
@@ -72,7 +79,7 @@ const CVEditor: FC = () => {
         It will be a link to your portfolio, LinkedIn profile, or personal
         website"
       >
-        <SocialList list={CV.links} form={<SocialLinksForm />} />
+        <SocialList list={CV.links} />
       </CVBlock>
 
       <CVBlock
@@ -82,11 +89,11 @@ const CVEditor: FC = () => {
         they match the key skills mentioned in the job listing (especially
         when applying via an online system)."
       >
-        <SkillList list={CV.skills} form={<SkillForm />} />
+        <SkillList list={CV.skills} />
       </CVBlock>
 
       <CVBlock name="language" title="Languages">
-        <LanguageList list={CV.languages} form={<LanguagesForm />} />
+        <LanguageList list={CV.languages} />
       </CVBlock>
     </Layout>
   );

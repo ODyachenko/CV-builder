@@ -1,9 +1,18 @@
 import React, { FC } from 'react';
 import InputField from '../UI/InputField';
-import { useAppSelector } from '../../hooks/hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
+import { setCV } from '../../redux/slices/CVSlice';
 
 const PersonalDetailsForm: FC = () => {
   const { CV } = useAppSelector((state) => state.CVSLice);
+  const dispatch = useAppDispatch();
+
+  const onChangeHandler = (
+    evt: React.ChangeEvent<HTMLInputElement>,
+    key: string
+  ) => {
+    dispatch(setCV({ ...CV, [key]: evt.target.value }));
+  };
 
   return (
     <form action="" className="mb-10">
@@ -12,7 +21,7 @@ const PersonalDetailsForm: FC = () => {
         <InputField
           label="Job Title"
           value={CV.jobTitle}
-          handler={() => true}
+          handler={(evt) => onChangeHandler(evt, 'jobTitle')}
           placeholder="e.g. Teacher"
         />
         <div className="mt-2 flex items-center gap-x-3">
@@ -38,35 +47,37 @@ const PersonalDetailsForm: FC = () => {
         <InputField
           label="First Name"
           value={CV.firstName}
-          handler={() => true}
+          handler={(evt) => onChangeHandler(evt, 'firstName')}
         />
         <InputField
           label="Last Name"
           value={CV.lastName}
-          handler={() => true}
+          handler={(evt) => onChangeHandler(evt, 'lastName')}
         />
         <InputField
           label="Email"
           value={CV.email}
-          handler={() => true}
+          handler={(evt) => onChangeHandler(evt, 'email')}
           type="email"
+          name="email"
         />
         <InputField
           label="Phone"
           value={CV.phone}
-          handler={() => true}
+          handler={(evt) => onChangeHandler(evt, 'phone')}
           type="phone"
+          name="phone"
         />
         <InputField
           label="Country"
           value={CV.country}
-          handler={() => true}
+          handler={(evt) => onChangeHandler(evt, 'country')}
           name="country"
         />
         <InputField
           label="City"
           value={CV.city}
-          handler={() => true}
+          handler={(evt) => onChangeHandler(evt, 'city')}
           name="city"
         />
       </fieldset>

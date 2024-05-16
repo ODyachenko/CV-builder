@@ -10,7 +10,7 @@ const TextArea: FC<TextAreaType> = ({ value, handler, className, label }) => {
       <textarea
         value={value}
         onChange={handler}
-        className="w-full h-36 bg-field-bg rounded-sm py-3 px-4 resize-none focus:outline-none focus:border-b-2 border-solid border-primary-blue"
+        className="w-full h-36 leading-snug bg-field-bg rounded-sm py-3 px-4 resize-none focus:outline-none focus:border-b-2 border-solid border-primary-blue"
         placeholder="e.g. Passionate science teacher with 8+ years of expericence and a track record of ..."
       ></textarea>
     </label>
