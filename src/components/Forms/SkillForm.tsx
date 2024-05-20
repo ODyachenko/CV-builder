@@ -11,11 +11,20 @@ const SkillForm: FC<SkillType> = ({ skill, level, id }) => {
   const { CV } = useAppSelector((state) => state.CVSLice);
   const dispatch = useAppDispatch();
 
-  const onChangeHandler = (
+  const onChangeInput = (
     evt: React.ChangeEvent<HTMLInputElement>,
     key: string
   ) => {
-    const updatedSkills = updateObj(CV, 'skills', key, id, evt);
+    const updatedSkills = updateObj(CV, 'skills', key, id, evt.target.value);
+
+    dispatch(setCV({ ...CV, skills: updatedSkills }));
+  };
+
+  const onChangeSelect = (
+    evt: React.ChangeEvent<HTMLSelectElement>,
+    key: string
+  ) => {
+    const updatedSkills = updateObj(CV, 'skills', key, id, evt.value);
     dispatch(setCV({ ...CV, skills: updatedSkills }));
   };
 
@@ -25,14 +34,14 @@ const SkillForm: FC<SkillType> = ({ skill, level, id }) => {
         <InputField
           label="Skill"
           value={skill}
-          handler={(evt) => onChangeHandler(evt, 'skill')}
+          handler={(evt) => onChangeInput(evt, 'skill')}
         />
         <SelectField
           options={skillLevels}
           label="Level"
           placeholder="Select level"
           value={level}
-          handler={(evt) => onChangeHandler(evt, 'level')}
+          handler={(evt) => onChangeSelect(evt, 'level')}
         />
       </fieldset>
     </form>

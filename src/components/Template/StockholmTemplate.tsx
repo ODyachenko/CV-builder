@@ -66,9 +66,10 @@ const StockholmTemplate: FC<TemplateProps> = React.forwardRef(({ CV }, ref) => {
                   <h3 className="font-bold mb-1">
                     {education.degree} at {education.school}, {education.city}
                   </h3>
-                  <span className="inline-block text-sm font-light text-priamry-gray">
+                  <span className="inline-block text-sm font-light text-priamry-gray mb-2">
                     {education.startDate} - {education.endDate}
                   </span>
+                  <p>{education.description}</p>
                 </li>
               ))}
             </ul>

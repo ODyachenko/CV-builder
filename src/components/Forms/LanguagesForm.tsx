@@ -11,11 +11,25 @@ const LanguagesForm: FC<LanguageType> = ({ language, level, id }) => {
   const { CV } = useAppSelector((state) => state.CVSLice);
   const dispatch = useAppDispatch();
 
-  const onChangeHandler = (
+  const onChangeInput = (
     evt: React.ChangeEvent<HTMLInputElement>,
     key: string
   ) => {
-    const updatedLanguages = updateObj(CV, 'languages', key, id, evt);
+    const updatedLanguages = updateObj(
+      CV,
+      'languages',
+      key,
+      id,
+      evt.target.value
+    );
+    dispatch(setCV({ ...CV, languages: updatedLanguages }));
+  };
+
+  const onChangeSelect = (
+    evt: React.ChangeEvent<HTMLSelectElement>,
+    key: string
+  ) => {
+    const updatedLanguages = updateObj(CV, 'languages', key, id, evt.value);
     dispatch(setCV({ ...CV, languages: updatedLanguages }));
   };
 
@@ -25,11 +39,12 @@ const LanguagesForm: FC<LanguageType> = ({ language, level, id }) => {
         <InputField
           label="Language"
           value={language}
-          handler={(evt) => onChangeHandler(evt, 'language')}
+          handler={(evt) => onChangeInput(evt, 'language')}
         />
         <SelectField
           options={languageLevels}
           value={level}
+          handler={(evt) => onChangeSelect(evt, 'level')}
           label="Level"
           placeholder="Select level"
         />

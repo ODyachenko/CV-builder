@@ -1,9 +1,9 @@
 export const languageLevels = [
-  { value: 'Native speaker', label: 'Native speaker' },
-  { value: 'C2', label: 'C2' },
-  { value: 'C1', label: 'C1' },
-  { value: 'B2', label: 'B2' },
-  { value: 'B1', label: 'B1' },
-  { value: 'A2', label: 'A2' },
-  { value: 'A1', label: 'A1' },
+  { value: 0, label: 'Native speaker' },
+  { value: 1, label: 'C2' },
+  { value: 2, label: 'C1' },
+  { value: 3, label: 'B2' },
+  { value: 4, label: 'B1' },
+  { value: 5, label: 'A2' },
+  { value: 6, label: 'A1' },
 ];

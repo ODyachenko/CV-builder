@@ -6,11 +6,11 @@ export const updateObj = (
   key: string,
   field: string,
   id: number,
-  evt: React.ChangeEvent<HTMLInputElement>
+  evt: string
 ) => {
   return parent[key].map((item: { id: number }) => {
     if (item.id === id && field in item) {
-      return { ...item, [field]: evt.target.value };
+      return { ...item, [field]: evt };
     }
     return item;
   });
