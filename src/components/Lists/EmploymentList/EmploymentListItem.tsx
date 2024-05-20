@@ -12,6 +12,10 @@ type EmploymentListItemProps = {
 const EmploymentListItem: FC<EmploymentListItemProps> = ({ item }) => {
   const [isEdit, setIsEdit] = useState<boolean>(false);
 
+  const onClickDeleteHandler = () => {
+    confirm('Do you want to delete item?');
+  };
+
   return (
     <li className="border border-solid border-primary-gray rounded-md mb-4">
       <div className="relative">
@@ -34,7 +38,10 @@ const EmploymentListItem: FC<EmploymentListItemProps> = ({ item }) => {
             <IoChevronDown size={20} />
           </div>
         </div>
-        <button className="absolute -right-6 top-0 bottom-0 m-auto">
+        <button
+          onClick={onClickDeleteHandler}
+          className="absolute -right-6 top-0 bottom-0 m-auto"
+        >
           <MdDeleteOutline
             size={20}
             className="transition-all hover:fill-primary-blue"

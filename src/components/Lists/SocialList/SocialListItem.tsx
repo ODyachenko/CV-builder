@@ -24,7 +24,9 @@ const SocialListItem: FC<SocialListItemProps> = ({ item }) => {
         >
           <div className="flex items-center justify-between">
             <div>
-              <h3 className="font-bold mb-1">{item.label}</h3>
+              <h3 className="font-bold mb-1">
+                {item.label ? item.label : 'Not specified'}
+              </h3>
               <span className="font-light text-priamry-gray">{item.link}</span>
             </div>
             <IoChevronDown size={20} />

@@ -4,6 +4,7 @@ import { MdDeleteOutline } from 'react-icons/md';
 import { RiDraggable } from 'react-icons/ri';
 import SkillForm from '../../Forms/SkillForm';
 import { SkillType } from '../../../../@types';
+import { skillLevels } from '../../../data/skillLevels';
 
 type SkillListItemProps = {
   item: SkillType;
@@ -11,6 +12,10 @@ type SkillListItemProps = {
 
 const SkillListItem: FC<SkillListItemProps> = ({ item }) => {
   const [isEdit, setIsEdit] = useState<boolean>(false);
+
+  const onClickDeleteHandler = () => {
+    confirm('Do you want to delete item?');
+  };
 
   return (
     <li className="border border-solid border-primary-gray rounded-md mb-4">
@@ -24,13 +29,20 @@ const SkillListItem: FC<SkillListItemProps> = ({ item }) => {
         >
           <div className="flex items-center justify-between">
             <div>
-              <h3 className="font-bold">{item.skill}</h3>
-              <span className="font-light text-priamry-gray">{item.level}</span>
+              <h3 className="font-bold mb-1">
+                {item.skill ? item.skill : 'Not specified'}
+              </h3>
+              <span className="font-light text-priamry-gray">
+                {skillLevels[item.level].label}
+              </span>
             </div>
             <IoChevronDown size={20} />
           </div>
         </div>
-        <button className="absolute -right-6 top-0 bottom-0 m-auto">
+        <button
+          onClick={onClickDeleteHandler}
+          className="absolute -right-6 top-0 bottom-0 m-auto"
+        >
           <MdDeleteOutline
             size={20}
             className="transition-all hover:fill-primary-blue"

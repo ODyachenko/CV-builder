@@ -1,10 +1,13 @@
 import { FC } from 'react';
 import { AiOutlineAppstore } from 'react-icons/ai';
 import { FaMinus, FaPlus } from 'react-icons/fa';
-
 import Btn from '../UI/Btn';
 
-const TemplateInner: FC = () => {
+type TemplateInnerProps = {
+  handler: () => void;
+};
+
+const TemplateInner: FC<TemplateInnerProps> = ({ handler }) => {
   return (
     <div className="flex items-center justify-between gap-2 mb-8">
       <div className="flex items-center ">
@@ -22,7 +25,7 @@ const TemplateInner: FC = () => {
         </div>
       </div>
       <div>
-        <Btn handler={() => true}>Download PDF</Btn>
+        <Btn handler={handler}>Download PDF</Btn>
       </div>
     </div>
   );

@@ -45,7 +45,7 @@ const EmploymentForm: FC<EmploymentType> = ({
               Start & End Date
             </span>
             <span className="grid grid-cols-2 gap-3">
-              {/* <InputField
+              <InputField
                 type="month"
                 value={startDate}
                 handler={(evt) => onChangeHandler(evt, 'startDate')}
@@ -54,7 +54,7 @@ const EmploymentForm: FC<EmploymentType> = ({
                 type="month"
                 value={endDate}
                 handler={(evt) => onChangeHandler(evt, 'endDate')}
-              /> */}
+              />
             </span>
           </label>
         </fieldset>

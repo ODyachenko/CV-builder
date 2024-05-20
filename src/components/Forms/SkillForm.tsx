@@ -5,13 +5,7 @@ import { SkillType } from '../../../@types';
 import { useAppSelector, useAppDispatch } from '../../hooks/hooks';
 import { setCV } from '../../redux/slices/CVSlice';
 import { updateObj } from '../../utils/updateObj';
-
-const options = [
-  { value: 'Beginner', label: 'Beginner' },
-  { value: 'Skillful', label: 'Skillful' },
-  { value: 'Experienced', label: 'Experienced' },
-  { value: 'Expert', label: 'Expert' },
-];
+import { skillLevels } from '../../data/skillLevels';
 
 const SkillForm: FC<SkillType> = ({ skill, level, id }) => {
   const { CV } = useAppSelector((state) => state.CVSLice);
@@ -34,10 +28,11 @@ const SkillForm: FC<SkillType> = ({ skill, level, id }) => {
           handler={(evt) => onChangeHandler(evt, 'skill')}
         />
         <SelectField
-          options={options}
-          value={level}
+          options={skillLevels}
           label="Level"
           placeholder="Select level"
+          value={level}
+          handler={(evt) => onChangeHandler(evt, 'level')}
         />
       </fieldset>
     </form>

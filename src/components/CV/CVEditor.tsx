@@ -36,7 +36,7 @@ const CVEditor: FC = () => {
       <PersonalDetailsForm />
       <div className="mb-10">
         <h2 className="subtitle mb-2">Professional Summary</h2>
-        <p className="text-sm leading-snug text-priamry-gray mb-4">
+        <p className="text-sm text-priamry-gray mb-4">
           Write 2-4 short & energetic sentences to interest the reader! Mention
           your role, experience & most importantly - your biggest achievements,
           best qualities and skills.
@@ -46,7 +46,7 @@ const CVEditor: FC = () => {
           handler={(evt) => onChangeHandler(evt, 'profile')}
         />
         <div className="flex justify-between gap-3">
-          <p className="text-sm leading-snug text-priamry-gray">
+          <p className="text-sm text-priamry-gray">
             Recruiter tip: write 400-600 characters to increase interview
             chances
           </p>

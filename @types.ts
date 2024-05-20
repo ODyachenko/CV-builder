@@ -28,7 +28,8 @@ export type SelectType = {
   label?: string;
   placeholder?: string;
   className?: string;
-  value: string;
+  value: number;
+  handler: (evt: React.ChangeEvent<HTMLSelectElement>, key: string) => void;
 };
 
 export type BtnType = {
@@ -79,12 +80,12 @@ export type SocialLinkType = {
 export type LanguageType = {
   id: number;
   language: string;
-  level: string;
+  level: number;
 };
 export type SkillType = {
   id: number;
   skill: string;
-  level: string;
+  level: number;
 };
 
 export type CVBlockType = {
@@ -110,4 +111,9 @@ export type CVType = {
   links: SocialLinkType[];
   skills: SkillType[];
   languages: LanguageType[];
+};
+
+export type TemplateProps = {
+  CV: CVType;
+  ref: React.LegacyRef<HTMLDivElement>;
 };

@@ -9,6 +9,7 @@ const colorStyles = {
     border: 'none',
     borderRadius: '3px',
     padding: '4px 0',
+    cursor: 'pointer',
   }),
 };
 
@@ -18,6 +19,7 @@ const SelectField: FC<SelectType> = ({
   options,
   placeholder,
   value,
+  handler,
 }) => {
   return (
     <label className={`${className ? className : ''}`}>
@@ -28,6 +30,8 @@ const SelectField: FC<SelectType> = ({
         options={options}
         placeholder={placeholder}
         styles={colorStyles}
+        defaultValue={options[value]}
+        onChange={handler}
       />
     </label>
   );

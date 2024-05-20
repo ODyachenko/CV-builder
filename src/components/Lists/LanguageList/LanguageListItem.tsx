@@ -4,6 +4,7 @@ import { IoChevronDown } from 'react-icons/io5';
 import { MdDeleteOutline } from 'react-icons/md';
 import { RiDraggable } from 'react-icons/ri';
 import LanguagesForm from '../../Forms/LanguagesForm';
+import { languageLevels } from '../../../data/languageLevels';
 
 type LanguageListItemProps = {
   item: LanguageType;
@@ -24,8 +25,12 @@ const LanguageListItem: FC<LanguageListItemProps> = ({ item }) => {
         >
           <div className="flex items-center justify-between">
             <div>
-              <h3 className="font-bold mb-1">{item.language}</h3>
-              <span className="font-light text-priamry-gray">{item.level}</span>
+              <h3 className="font-bold mb-1">
+                {item.language ? item.language : 'Not specified'}
+              </h3>
+              <span className="font-light text-priamry-gray">
+                {languageLevels[item.level].label}
+              </span>
             </div>
             <IoChevronDown size={20} />
           </div>

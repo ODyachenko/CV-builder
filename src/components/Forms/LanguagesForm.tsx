@@ -5,16 +5,7 @@ import { LanguageType } from '../../../@types';
 import { useAppSelector, useAppDispatch } from '../../hooks/hooks';
 import { setCV } from '../../redux/slices/CVSlice';
 import { updateObj } from '../../utils/updateObj';
-
-const options = [
-  { value: 'Native speaker', label: 'Native speaker' },
-  { value: 'C2', label: 'C2' },
-  { value: 'C1', label: 'C1' },
-  { value: 'B2', label: 'B2' },
-  { value: 'B1', label: 'B1' },
-  { value: 'A2', label: 'A2' },
-  { value: 'A1', label: 'A1' },
-];
+import { languageLevels } from '../../data/languageLevels';
 
 const LanguagesForm: FC<LanguageType> = ({ language, level, id }) => {
   const { CV } = useAppSelector((state) => state.CVSLice);
@@ -37,7 +28,7 @@ const LanguagesForm: FC<LanguageType> = ({ language, level, id }) => {
           handler={(evt) => onChangeHandler(evt, 'language')}
         />
         <SelectField
-          options={options}
+          options={languageLevels}
           value={level}
           label="Level"
           placeholder="Select level"

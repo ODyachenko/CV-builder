@@ -45,8 +45,16 @@ const EducationForm: FC<EducationType> = ({
               Start & End Date
             </span>
             <span className="grid grid-cols-2 gap-3">
-              {/* <InputField type="month" value={startDate} handler={evt => onChangeHandler(evt, 'startDate')} />
-              <InputField type="month" value={endDate} handler={evt => onChangeHandler(evt, 'endDate')} /> */}
+              <InputField
+                type="month"
+                value={startDate}
+                handler={(evt) => onChangeHandler(evt, 'startDate')}
+              />
+              <InputField
+                type="month"
+                value={endDate}
+                handler={(evt) => onChangeHandler(evt, 'endDate')}
+              />
             </span>
           </label>
         </fieldset>
