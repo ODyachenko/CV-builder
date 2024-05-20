@@ -22,7 +22,13 @@ const EducationForm: FC<EducationType> = ({
     evt: React.ChangeEvent<HTMLInputElement>,
     key: string
   ) => {
-    const updatedEducations = updateObj(CV, 'educations', key, id, evt);
+    const updatedEducations = updateObj(
+      CV,
+      'educations',
+      key,
+      id,
+      evt.target.value
+    );
     dispatch(setCV({ ...CV, educations: updatedEducations }));
   };
 

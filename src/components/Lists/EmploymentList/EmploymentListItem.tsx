@@ -4,6 +4,7 @@ import { IoChevronDown } from 'react-icons/io5';
 import { MdDeleteOutline } from 'react-icons/md';
 import { RiDraggable } from 'react-icons/ri';
 import EmploymentForm from '../../Forms/EmploymentForm';
+import useDelete from '../../../hooks/useDelete';
 
 type EmploymentListItemProps = {
   item: EmploymentType;
@@ -11,10 +12,7 @@ type EmploymentListItemProps = {
 
 const EmploymentListItem: FC<EmploymentListItemProps> = ({ item }) => {
   const [isEdit, setIsEdit] = useState<boolean>(false);
-
-  const onClickDeleteHandler = () => {
-    confirm('Do you want to delete item?');
-  };
+  const onClickDelete = useDelete();
 
   return (
     <li className="border border-solid border-primary-gray rounded-md mb-4">
@@ -39,7 +37,7 @@ const EmploymentListItem: FC<EmploymentListItemProps> = ({ item }) => {
           </div>
         </div>
         <button
-          onClick={onClickDeleteHandler}
+          onClick={() => onClickDelete(item.id, 'employments')}
           className="absolute -right-6 top-0 bottom-0 m-auto"
         >
           <MdDeleteOutline

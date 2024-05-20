@@ -1,4 +1,3 @@
-import React from 'react';
 import { CVType } from '../../@types';
 
 export const updateObj = (

@@ -13,7 +13,13 @@ const SocialLinksForm: FC<SocialLinkType> = ({ label, link, id }) => {
     evt: React.ChangeEvent<HTMLInputElement>,
     key: string
   ) => {
-    const updatedSocialLinks = updateObj(CV, 'links', key, id, evt);
+    const updatedSocialLinks = updateObj(
+      CV,
+      'links',
+      key,
+      id,
+      evt.target.value
+    );
     dispatch(setCV({ ...CV, links: updatedSocialLinks }));
   };
 

@@ -1,9 +1,10 @@
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 import { IoChevronDown } from 'react-icons/io5';
 import { MdDeleteOutline } from 'react-icons/md';
 import { RiDraggable } from 'react-icons/ri';
 import { SocialLinkType } from '../../../../@types';
 import SocialLinksForm from '../../Forms/SocialLinksForm';
+import useDelete from '../../../hooks/useDelete';
 
 type SocialListItemProps = {
   item: SocialLinkType;
@@ -11,6 +12,7 @@ type SocialListItemProps = {
 
 const SocialListItem: FC<SocialListItemProps> = ({ item }) => {
   const [isEdit, setIsEdit] = useState<boolean>(false);
+  const onClickDelete = useDelete();
 
   return (
     <li className="border border-solid border-primary-gray rounded-md mb-4">
@@ -32,7 +34,10 @@ const SocialListItem: FC<SocialListItemProps> = ({ item }) => {
             <IoChevronDown size={20} />
           </div>
         </div>
-        <button className="absolute -right-6 top-0 bottom-0 m-auto">
+        <button
+          onClick={() => onClickDelete(item.id, 'links')}
+          className="absolute -right-6 top-0 bottom-0 m-auto"
+        >
           <MdDeleteOutline
             size={20}
             className="transition-all hover:fill-primary-blue"

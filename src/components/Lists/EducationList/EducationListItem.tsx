@@ -4,6 +4,7 @@ import { IoChevronDown } from 'react-icons/io5';
 import { MdDeleteOutline } from 'react-icons/md';
 import { RiDraggable } from 'react-icons/ri';
 import EducationForm from '../../Forms/EducationForm';
+import useDelete from '../../../hooks/useDelete';
 
 type EducationListItemProps = {
   item: EducationType;
@@ -11,6 +12,7 @@ type EducationListItemProps = {
 
 const EducationListItem: FC<EducationListItemProps> = ({ item }) => {
   const [isEdit, setIsEdit] = useState<boolean>(false);
+  const onClickDelete = useDelete();
 
   return (
     <li className="border border-solid border-primary-gray rounded-md mb-4">
@@ -34,7 +36,10 @@ const EducationListItem: FC<EducationListItemProps> = ({ item }) => {
             <IoChevronDown size={20} />
           </div>
         </div>
-        <button className="absolute -right-6 top-0 bottom-0 m-auto">
+        <button
+          onClick={() => onClickDelete(item.id, 'educations')}
+          className="absolute -right-6 top-0 bottom-0 m-auto"
+        >
           <MdDeleteOutline
             size={20}
             className="transition-all hover:fill-primary-blue"

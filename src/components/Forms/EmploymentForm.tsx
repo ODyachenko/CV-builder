@@ -22,7 +22,13 @@ const EmploymentForm: FC<EmploymentType> = ({
     evt: React.ChangeEvent<HTMLInputElement>,
     key: string
   ) => {
-    const updatedEmployments = updateObj(CV, 'employments', key, id, evt);
+    const updatedEmployments = updateObj(
+      CV,
+      'employments',
+      key,
+      id,
+      evt.target.value
+    );
     dispatch(setCV({ ...CV, employments: updatedEmployments }));
   };
 
