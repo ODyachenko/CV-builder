@@ -1,32 +1,12 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import InputField from '../UI/InputField';
 import SelectField from '../UI/SelectField';
 import { SkillType } from '../../../@types';
-import { useAppSelector, useAppDispatch } from '../../hooks/hooks';
-import { setCV } from '../../redux/slices/CVSlice';
-import { updateObj } from '../../utils/updateObj';
 import { skillLevels } from '../../data/skillLevels';
+import useUpdate from '../../hooks/useUpdate';
 
 const SkillForm: FC<SkillType> = ({ skill, level, id }) => {
-  const { CV } = useAppSelector((state) => state.CVSLice);
-  const dispatch = useAppDispatch();
-
-  const onChangeInput = (
-    evt: React.ChangeEvent<HTMLInputElement>,
-    key: string
-  ) => {
-    const updatedSkills = updateObj(CV, 'skills', key, id, evt.target.value);
-
-    dispatch(setCV({ ...CV, skills: updatedSkills }));
-  };
-
-  const onChangeSelect = (
-    evt: React.ChangeEvent<HTMLSelectElement>,
-    key: string
-  ) => {
-    const updatedSkills = updateObj(CV, 'skills', key, id, evt.value);
-    dispatch(setCV({ ...CV, skills: updatedSkills }));
-  };
+  const onChange = useUpdate(id, 'skills');
 
   return (
     <form className="py-4 px-5">
@@ -34,14 +14,14 @@ const SkillForm: FC<SkillType> = ({ skill, level, id }) => {
         <InputField
           label="Skill"
           value={skill}
-          handler={(evt) => onChangeInput(evt, 'skill')}
+          handler={(evt) => onChange(evt.target.value, 'skill')}
         />
         <SelectField
           options={skillLevels}
           label="Level"
           placeholder="Select level"
           value={level}
-          handler={(evt) => onChangeSelect(evt, 'level')}
+          handler={(evt) => onChange(evt.value, 'level')}
         />
       </fieldset>
     </form>

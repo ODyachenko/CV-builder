@@ -1,37 +1,12 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import InputField from '../UI/InputField';
 import SelectField from '../UI/SelectField';
 import { LanguageType } from '../../../@types';
-import { useAppSelector, useAppDispatch } from '../../hooks/hooks';
-import { setCV } from '../../redux/slices/CVSlice';
-import { updateObj } from '../../utils/updateObj';
 import { languageLevels } from '../../data/languageLevels';
+import useUpdate from '../../hooks/useUpdate';
 
 const LanguagesForm: FC<LanguageType> = ({ language, level, id }) => {
-  const { CV } = useAppSelector((state) => state.CVSLice);
-  const dispatch = useAppDispatch();
-
-  const onChangeInput = (
-    evt: React.ChangeEvent<HTMLInputElement>,
-    key: string
-  ) => {
-    const updatedLanguages = updateObj(
-      CV,
-      'languages',
-      key,
-      id,
-      evt.target.value
-    );
-    dispatch(setCV({ ...CV, languages: updatedLanguages }));
-  };
-
-  const onChangeSelect = (
-    evt: React.ChangeEvent<HTMLSelectElement>,
-    key: string
-  ) => {
-    const updatedLanguages = updateObj(CV, 'languages', key, id, evt.value);
-    dispatch(setCV({ ...CV, languages: updatedLanguages }));
-  };
+  const onChange = useUpdate(id, 'languages');
 
   return (
     <form className="py-4 px-5">
@@ -39,12 +14,12 @@ const LanguagesForm: FC<LanguageType> = ({ language, level, id }) => {
         <InputField
           label="Language"
           value={language}
-          handler={(evt) => onChangeInput(evt, 'language')}
+          handler={(evt) => onChange(evt.target.value, 'language')}
         />
         <SelectField
           options={languageLevels}
           value={level}
-          handler={(evt) => onChangeSelect(evt, 'level')}
+          handler={(evt) => onChange(evt.value, 'level')}
           label="Level"
           placeholder="Select level"
         />

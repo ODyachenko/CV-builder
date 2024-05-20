@@ -1,10 +1,8 @@
 import { FC } from 'react';
 import InputField from '../UI/InputField';
 import TextArea from '../UI/TextArea';
-import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { EmploymentType } from '../../../@types';
-import { setCV } from '../../redux/slices/CVSlice';
-import { updateObj } from '../../utils/updateObj';
+import useUpdate from '../../hooks/useUpdate';
 
 const EmploymentForm: FC<EmploymentType> = ({
   id,
@@ -15,22 +13,7 @@ const EmploymentForm: FC<EmploymentType> = ({
   city,
   description,
 }) => {
-  const { CV } = useAppSelector((state) => state.CVSLice);
-  const dispatch = useAppDispatch();
-
-  const onChangeHandler = (
-    evt: React.ChangeEvent<HTMLInputElement>,
-    key: string
-  ) => {
-    const updatedEmployments = updateObj(
-      CV,
-      'employments',
-      key,
-      id,
-      evt.target.value
-    );
-    dispatch(setCV({ ...CV, employments: updatedEmployments }));
-  };
+  const onChange = useUpdate(id, 'employments');
 
   return (
     <form className="py-4 px-5">
@@ -38,12 +21,12 @@ const EmploymentForm: FC<EmploymentType> = ({
         <InputField
           label="Job title"
           value={jobTitle}
-          handler={(evt) => onChangeHandler(evt, 'jobTitle')}
+          handler={(evt) => onChange(evt.target.value, 'jobTitle')}
         />
         <InputField
           label="Employer"
           value={employer}
-          handler={(evt) => onChangeHandler(evt, 'employer')}
+          handler={(evt) => onChange(evt.target.value, 'employer')}
         />
         <fieldset>
           <label>
@@ -54,12 +37,12 @@ const EmploymentForm: FC<EmploymentType> = ({
               <InputField
                 type="month"
                 value={startDate}
-                handler={(evt) => onChangeHandler(evt, 'startDate')}
+                handler={(evt) => onChange(evt.target.value, 'startDate')}
               />
               <InputField
                 type="month"
                 value={endDate}
-                handler={(evt) => onChangeHandler(evt, 'endDate')}
+                handler={(evt) => onChange(evt.target.value, 'endDate')}
               />
             </span>
           </label>
@@ -67,12 +50,12 @@ const EmploymentForm: FC<EmploymentType> = ({
         <InputField
           label="City"
           value={city}
-          handler={(evt) => onChangeHandler(evt, 'city')}
+          handler={(evt) => onChange(evt.target.value, 'city')}
         />
       </fieldset>
       <TextArea
         value={description}
-        handler={(evt) => onChangeHandler(evt, 'description')}
+        handler={(evt) => onChange(evt.target.value, 'description')}
         label="Description"
       />
     </form>

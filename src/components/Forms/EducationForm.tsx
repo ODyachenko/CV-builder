@@ -1,10 +1,8 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import InputField from '../UI/InputField';
 import TextArea from '../UI/TextArea';
-import { setCV } from '../../redux/slices/CVSlice';
-import { useAppSelector, useAppDispatch } from '../../hooks/hooks';
 import { EducationType } from '../../../@types';
-import { updateObj } from '../../utils/updateObj';
+import useUpdate from '../../hooks/useUpdate';
 
 const EducationForm: FC<EducationType> = ({
   id,
@@ -15,22 +13,7 @@ const EducationForm: FC<EducationType> = ({
   startDate,
   endDate,
 }) => {
-  const { CV } = useAppSelector((state) => state.CVSLice);
-  const dispatch = useAppDispatch();
-
-  const onChangeHandler = (
-    evt: React.ChangeEvent<HTMLInputElement>,
-    key: string
-  ) => {
-    const updatedEducations = updateObj(
-      CV,
-      'educations',
-      key,
-      id,
-      evt.target.value
-    );
-    dispatch(setCV({ ...CV, educations: updatedEducations }));
-  };
+  const onChange = useUpdate(id, 'educations');
 
   return (
     <form className="py-4 px-5">
@@ -38,12 +21,12 @@ const EducationForm: FC<EducationType> = ({
         <InputField
           label="School"
           value={school}
-          handler={(evt) => onChangeHandler(evt, 'school')}
+          handler={(evt) => onChange(evt.target.value, 'school')}
         />
         <InputField
           label="Degree"
           value={degree}
-          handler={(evt) => onChangeHandler(evt, 'degree')}
+          handler={(evt) => onChange(evt.target.value, 'degree')}
         />
         <fieldset>
           <label>
@@ -54,12 +37,12 @@ const EducationForm: FC<EducationType> = ({
               <InputField
                 type="month"
                 value={startDate}
-                handler={(evt) => onChangeHandler(evt, 'startDate')}
+                handler={(evt) => onChange(evt.target.value, 'startDate')}
               />
               <InputField
                 type="month"
                 value={endDate}
-                handler={(evt) => onChangeHandler(evt, 'endDate')}
+                handler={(evt) => onChange(evt.target.value, 'endDate')}
               />
             </span>
           </label>
@@ -67,12 +50,12 @@ const EducationForm: FC<EducationType> = ({
         <InputField
           label="City"
           value={city}
-          handler={(evt) => onChangeHandler(evt, 'city')}
+          handler={(evt) => onChange(evt.target.value, 'city')}
         />
       </fieldset>
       <TextArea
         value={description}
-        handler={(evt) => onChangeHandler(evt, 'description')}
+        handler={(evt) => onChange(evt.target.value, 'description')}
         label="Description"
       />
     </form>

@@ -8,7 +8,7 @@ const useDelete = () => {
 
   const onClickDelete = (id: number, field: string) => {
     if (confirm('Do you want to delete item?')) {
-      const filteredItems = CV[field].filter((skill) => skill.id !== id);
+      const filteredItems = CV[field].filter((item) => item.id !== id);
       dispatch(setCV({ ...CV, [field]: filteredItems }));
     }
   };

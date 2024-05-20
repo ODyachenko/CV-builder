@@ -1,27 +1,10 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import InputField from '../UI/InputField';
 import { SocialLinkType } from '../../../@types';
-import { useAppSelector, useAppDispatch } from '../../hooks/hooks';
-import { setCV } from '../../redux/slices/CVSlice';
-import { updateObj } from '../../utils/updateObj';
+import useUpdate from '../../hooks/useUpdate';
 
 const SocialLinksForm: FC<SocialLinkType> = ({ label, link, id }) => {
-  const { CV } = useAppSelector((state) => state.CVSLice);
-  const dispatch = useAppDispatch();
-
-  const onChangeHandler = (
-    evt: React.ChangeEvent<HTMLInputElement>,
-    key: string
-  ) => {
-    const updatedSocialLinks = updateObj(
-      CV,
-      'links',
-      key,
-      id,
-      evt.target.value
-    );
-    dispatch(setCV({ ...CV, links: updatedSocialLinks }));
-  };
+  const onChange = useUpdate(id, 'links');
 
   return (
     <form className="py-4 px-5">
@@ -29,12 +12,12 @@ const SocialLinksForm: FC<SocialLinkType> = ({ label, link, id }) => {
         <InputField
           label="Label"
           value={label}
-          handler={(evt) => onChangeHandler(evt, 'label')}
+          handler={(evt) => onChange(evt.target.value, 'label')}
         />
         <InputField
           label="Link"
           value={link}
-          handler={(evt) => onChangeHandler(evt, 'link')}
+          handler={(evt) => onChange(evt.target.value, 'link')}
         />
       </fieldset>
     </form>
