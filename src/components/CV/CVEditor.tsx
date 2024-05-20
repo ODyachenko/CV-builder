@@ -9,7 +9,15 @@ import EducationList from '../Lists/EducationList/EducationList';
 import SocialList from '../Lists/SocialList/SocialList';
 import SkillList from '../Lists/SkillList/SkillList';
 import LanguageList from '../Lists/LanguageList/LanguageList';
-import { setCV } from '../../redux/slices/CVSlice';
+import {
+  createEducation,
+  createEmployment,
+  createLanguage,
+  createLink,
+  createSkill,
+  setCV,
+} from '../../redux/slices/CVSlice';
+import CreateBtn from '../UI/CreateBtn';
 
 const CVEditor: FC = () => {
   const { CV } = useAppSelector((state) => state.CVSLice);
@@ -61,6 +69,10 @@ const CVEditor: FC = () => {
           measured by Y, by doing Z)."
       >
         <EmploymentList list={CV.employments} />
+        <CreateBtn
+          value="employment"
+          handler={() => dispatch(createEmployment())}
+        />
       </CVBlock>
 
       <CVBlock
@@ -70,6 +82,10 @@ const CVEditor: FC = () => {
         learnings and background will bring to job."
       >
         <EducationList list={CV.educations} />
+        <CreateBtn
+          value="education"
+          handler={() => dispatch(createEducation())}
+        />
       </CVBlock>
 
       <CVBlock
@@ -80,6 +96,7 @@ const CVEditor: FC = () => {
         website"
       >
         <SocialList list={CV.links} />
+        <CreateBtn value="link" handler={() => dispatch(createLink())} />
       </CVBlock>
 
       <CVBlock
@@ -90,10 +107,15 @@ const CVEditor: FC = () => {
         when applying via an online system)."
       >
         <SkillList list={CV.skills} />
+        <CreateBtn value="skill" handler={() => dispatch(createSkill())} />
       </CVBlock>
 
       <CVBlock name="language" title="Languages">
         <LanguageList list={CV.languages} />
+        <CreateBtn
+          value="language"
+          handler={() => dispatch(createLanguage())}
+        />
       </CVBlock>
     </Layout>
   );

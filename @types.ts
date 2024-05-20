@@ -52,7 +52,7 @@ export type DocumentActions = {
 };
 
 export type EmploymentType = {
-  id: number;
+  id: string;
   jobTitle: string;
   employer: string;
   startDate: string;
@@ -62,7 +62,7 @@ export type EmploymentType = {
 };
 
 export type EducationType = {
-  id: number;
+  id: string;
   school: string;
   degree: string;
   startDate: string;
@@ -72,18 +72,18 @@ export type EducationType = {
 };
 
 export type SocialLinkType = {
-  id: number;
+  id: string;
   label: string;
   link: string;
 };
 
 export type LanguageType = {
-  id: number;
+  id: string;
   language: string;
   level: number;
 };
 export type SkillType = {
-  id: number;
+  id: string;
   skill: string;
   level: number;
 };
@@ -96,7 +96,7 @@ export type CVBlockType = {
 };
 
 export type CVType = {
-  id: number;
+  id: string;
   name: string;
   jobTitle: string;
   firstName: string;

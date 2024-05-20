@@ -27,10 +27,14 @@ const EducationListItem: FC<EducationListItemProps> = ({ item }) => {
           <div className="flex items-center justify-between">
             <div>
               <h3 className="font-bold mb-1">
-                {item.degree} at {item.school}
+                {item.school
+                  ? `${item.degree} at ${item.school}`
+                  : 'Not specified'}
               </h3>
               <span className="font-light text-priamry-gray">
-                {item.startDate} - {item.endDate}
+                {item.startDate &&
+                  item.endDate &&
+                  `${item.startDate} - ${item.endDate}`}
               </span>
             </div>
             <IoChevronDown size={20} />

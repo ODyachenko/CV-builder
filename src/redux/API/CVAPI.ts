@@ -28,7 +28,7 @@ export const CVAPI = createApi({
         };
       },
     }),
-    deleteCV: builder.mutation<{ success: boolean; id: number }, number>({
+    deleteCV: builder.mutation<{ success: boolean; id: string }, number>({
       query(id) {
         return {
           url: `/cv/${id}`,

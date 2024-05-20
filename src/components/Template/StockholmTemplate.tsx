@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { FaUser, FaBriefcase } from 'react-icons/fa';
 import { IoSchool } from 'react-icons/io5';
 import { TemplateProps } from '../../../@types';
+import { languageLevels } from '../../data/languageLevels';
 
 const StockholmTemplate: FC<TemplateProps> = React.forwardRef(({ CV }, ref) => {
   return (
@@ -27,7 +28,7 @@ const StockholmTemplate: FC<TemplateProps> = React.forwardRef(({ CV }, ref) => {
             </h2>
             <ul>
               {CV.employments.map((employment) => (
-                <li key={employment.id}>
+                <li key={employment.id} className="mb-4 last:mb-0">
                   <h3 className=" font-bold mb-1">
                     {employment.jobTitle} at {employment.employer},{' '}
                     {employment.city}
@@ -62,7 +63,7 @@ const StockholmTemplate: FC<TemplateProps> = React.forwardRef(({ CV }, ref) => {
             </h2>
             <ul>
               {CV.educations.map((education) => (
-                <li key={education.id}>
+                <li key={education.id} className="mb-4 last:mb-0">
                   <h3 className="font-bold mb-1">
                     {education.degree} at {education.school}, {education.city}
                   </h3>
@@ -124,7 +125,7 @@ const StockholmTemplate: FC<TemplateProps> = React.forwardRef(({ CV }, ref) => {
                   key={language.id}
                   className="border-b-4 border-solid border-primary-blue pb-3 mb-3"
                 >
-                  {language.language}
+                  {language.language} ({languageLevels[language.level].label})
                 </li>
               ))}
             </ul>

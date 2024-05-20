@@ -51,6 +51,7 @@ const EmploymentForm: FC<EmploymentType> = ({
           label="City"
           value={city}
           handler={(evt) => onChange(evt.target.value, 'city')}
+          name="city"
         />
       </fieldset>
       <TextArea

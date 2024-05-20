@@ -2,7 +2,7 @@ import { useAppDispatch, useAppSelector } from './hooks';
 import { setCV } from '../redux/slices/CVSlice';
 import { updateObj } from '../utils/updateObj';
 
-const useUpdate = (id: number, field: string) => {
+const useUpdate = (id: string, field: string) => {
   const { CV } = useAppSelector((state) => state.CVSLice);
   const dispatch = useAppDispatch();
 

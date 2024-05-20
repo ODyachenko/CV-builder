@@ -6,7 +6,7 @@ const useDelete = () => {
   const { CV } = useAppSelector((state) => state.CVSLice);
   const dispatch = useDispatch();
 
-  const onClickDelete = (id: number, field: string) => {
+  const onClickDelete = (id: string, field: string) => {
     if (confirm('Do you want to delete item?')) {
       const filteredItems = CV[field].filter((item) => item.id !== id);
       dispatch(setCV({ ...CV, [field]: filteredItems }));
