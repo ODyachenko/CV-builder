@@ -15,6 +15,7 @@ const initialState: CVState = {
     jobTitle: '',
     firstName: '',
     lastName: '',
+    avatarUrl: '',
     email: '',
     phone: '',
     country: '',
