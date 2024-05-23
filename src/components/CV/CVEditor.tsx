@@ -1,6 +1,5 @@
 import { FC } from 'react';
 import Layout from '../Layout';
-import TextArea from '../UI/TextArea';
 import PersonalDetailsForm from '../Forms/PersonalDetailsForm';
 import CVBlock from './CVBlock';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
@@ -18,6 +17,7 @@ import {
   setCV,
 } from '../../redux/slices/CVSlice';
 import CreateBtn from '../UI/CreateBtn';
+import SummaryForm from '../Forms/SummaryForm';
 
 const CVEditor: FC = () => {
   const { CV } = useAppSelector((state) => state.CVSLice);
@@ -42,25 +42,7 @@ const CVEditor: FC = () => {
         <span className="block font-light text-priamry-gray">English</span>
       </div>
       <PersonalDetailsForm />
-      <div className="mb-10">
-        <h2 className="subtitle mb-2">Professional Summary</h2>
-        <p className="text-sm text-priamry-gray mb-4">
-          Write 2-4 short & energetic sentences to interest the reader! Mention
-          your role, experience & most importantly - your biggest achievements,
-          best qualities and skills.
-        </p>
-        <TextArea
-          value={CV.profile}
-          handler={(evt) => onChangeHandler(evt, 'profile')}
-        />
-        <div className="flex justify-between gap-3">
-          <p className="text-sm text-priamry-gray">
-            Recruiter tip: write 400-600 characters to increase interview
-            chances
-          </p>
-          <span className="whitespace-nowrap">{CV.profile?.length} / 600</span>
-        </div>
-      </div>
+      <SummaryForm handler={onChangeHandler} />
       <CVBlock
         name="employment"
         title="Employment History"

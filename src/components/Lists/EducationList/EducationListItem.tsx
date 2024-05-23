@@ -1,4 +1,6 @@
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
+import { useSortable } from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
 import { EducationType } from '../../../../@types';
 import { IoChevronDown } from 'react-icons/io5';
 import { MdDeleteOutline } from 'react-icons/md';
@@ -12,12 +14,27 @@ type EducationListItemProps = {
 
 const EducationListItem: FC<EducationListItemProps> = ({ item }) => {
   const [isEdit, setIsEdit] = useState<boolean>(false);
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({ id: item.id });
   const onClickDelete = useDelete();
 
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+  };
+
   return (
-    <li className="border border-solid border-primary-gray rounded-md mb-4">
+    <div
+      ref={setNodeRef}
+      style={style}
+      className="bg-white border border-solid border-primary-gray rounded-md mb-4"
+    >
       <div className="relative">
-        <button className="absolute -left-6 top-0 bottom-0 m-auto">
+        <button
+          {...attributes}
+          {...listeners}
+          className="absolute -left-6 top-0 bottom-0 m-auto cursor-grabbing"
+        >
           <RiDraggable size={20} />
         </button>
         <div
@@ -51,7 +68,7 @@ const EducationListItem: FC<EducationListItemProps> = ({ item }) => {
         </button>
       </div>
       {isEdit && <EducationForm {...item} />}
-    </li>
+    </div>
   );
 };
 

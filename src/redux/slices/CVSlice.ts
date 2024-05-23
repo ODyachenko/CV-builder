@@ -2,9 +2,16 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { CVType } from '../../../@types';
 import { v4 } from 'uuid';
+import { arrayMove } from '@dnd-kit/sortable';
 
 interface CVState {
   CV: CVType;
+}
+
+interface DnDAction {
+  activeId: string | number;
+  overId: string | number;
+  arrayName: string;
 }
 
 // Define the initial state using that type
@@ -35,6 +42,20 @@ export const CVSlice = createSlice({
   reducers: {
     setCV: (state, action: PayloadAction<CVType>) => {
       state.CV = action.payload;
+    },
+    setDndIndexes: (state, action: PayloadAction<DnDAction>) => {
+      const arrayName = action.payload.arrayName;
+      const oldIndex = state.CV[arrayName].findIndex(
+        (item) => item.id === action.payload.activeId
+      );
+      const newIndex = state.CV[arrayName].findIndex(
+        (item) => item.id === action.payload.overId
+      );
+
+      state.CV = {
+        ...state.CV,
+        [arrayName]: arrayMove(state.CV[arrayName], oldIndex, newIndex),
+      };
     },
     createSkill: (state) => {
       const newSkill = {
@@ -101,6 +122,7 @@ export const CVSlice = createSlice({
 
 export const {
   setCV,
+  setDndIndexes,
   createSkill,
   createLanguage,
   createLink,
