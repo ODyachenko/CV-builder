@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { initialCV } from '../../data/initialValues';
 import { CVType } from '../../../@types';
-import { initialCV } from '../slices/CVSlice';
 
 export const CVAPI = createApi({
   reducerPath: 'CVAPI',
@@ -25,8 +25,9 @@ export const CVAPI = createApi({
     updateCV: builder.mutation<CVType, Partial<CVType>>({
       query(data) {
         const { id, ...body } = data;
+
         return {
-          url: `/dv/${id}`,
+          url: `/cv/${id}`,
           method: 'PUT',
           body,
         };
@@ -48,5 +49,6 @@ export const {
   useGetCVQuery,
   useRetrieveCVQuery,
   useCreateCVMutation,
+  useUpdateCVMutation,
   useDeleteCVMutation,
 } = CVAPI;

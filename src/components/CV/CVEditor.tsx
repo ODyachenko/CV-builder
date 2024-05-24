@@ -8,20 +8,22 @@ import EducationList from '../Lists/EducationList/EducationList';
 import SocialList from '../Lists/SocialList/SocialList';
 import SkillList from '../Lists/SkillList/SkillList';
 import LanguageList from '../Lists/LanguageList/LanguageList';
-import {
-  createEducation,
-  createEmployment,
-  createLanguage,
-  createLink,
-  createSkill,
-  setCV,
-} from '../../redux/slices/CVSlice';
+import { setCV } from '../../redux/slices/CVSlice';
 import CreateBtn from '../UI/CreateBtn';
 import SummaryForm from '../Forms/SummaryForm';
+import useCreate from '../../hooks/useCreate';
+import {
+  newEducation,
+  newEmployment,
+  newLanguage,
+  newLink,
+  newSkill,
+} from '../../data/initialValues';
 
 const CVEditor: FC = () => {
   const { CV } = useAppSelector((state) => state.CVSLice);
   const dispatch = useAppDispatch();
+  const createItem = useCreate();
 
   const onChangeHandler = (
     evt: React.ChangeEvent<HTMLInputElement>,
@@ -53,7 +55,7 @@ const CVEditor: FC = () => {
         <EmploymentList list={CV.employments} />
         <CreateBtn
           value="employment"
-          handler={() => dispatch(createEmployment())}
+          handler={() => createItem('employments', newEmployment)}
         />
       </CVBlock>
 
@@ -66,7 +68,7 @@ const CVEditor: FC = () => {
         <EducationList list={CV.educations} />
         <CreateBtn
           value="education"
-          handler={() => dispatch(createEducation())}
+          handler={() => createItem('educations', newEducation)}
         />
       </CVBlock>
 
@@ -78,7 +80,7 @@ const CVEditor: FC = () => {
         website"
       >
         <SocialList list={CV.links} />
-        <CreateBtn value="link" handler={() => dispatch(createLink())} />
+        <CreateBtn value="link" handler={() => createItem('links', newLink)} />
       </CVBlock>
 
       <CVBlock
@@ -89,14 +91,17 @@ const CVEditor: FC = () => {
         when applying via an online system)."
       >
         <SkillList list={CV.skills} />
-        <CreateBtn value="skill" handler={() => dispatch(createSkill())} />
+        <CreateBtn
+          value="skill"
+          handler={() => createItem('skills', newSkill)}
+        />
       </CVBlock>
 
       <CVBlock name="language" title="Languages">
         <LanguageList list={CV.languages} />
         <CreateBtn
           value="language"
-          handler={() => dispatch(createLanguage())}
+          handler={() => createItem('languages', newLanguage)}
         />
       </CVBlock>
     </Layout>
