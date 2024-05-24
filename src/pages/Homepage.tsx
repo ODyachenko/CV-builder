@@ -5,7 +5,7 @@ import DocumentsList from '../components/Documents/DocumentsList';
 import { useCreateCVMutation } from '../redux/API/CVAPI';
 
 const Homepage: FC = () => {
-  const [createCV, { isLoading, error }] = useCreateCVMutation();
+  const [createCV, { isLoading, isError }] = useCreateCVMutation();
 
   return (
     <Layout className="documents">

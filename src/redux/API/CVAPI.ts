@@ -32,13 +32,14 @@ export const CVAPI = createApi({
         };
       },
     }),
-    deleteCV: builder.mutation<{ success: boolean; id: string }, number>({
+    deleteCV: builder.mutation<{ success: boolean; id: string }, string>({
       query(id) {
         return {
           url: `/cv/${id}`,
           method: 'DELETE',
         };
       },
+      invalidatesTags: ['CV'],
     }),
   }),
 });

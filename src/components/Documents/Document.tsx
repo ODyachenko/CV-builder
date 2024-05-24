@@ -18,7 +18,7 @@ const Document: FC<CVType> = ({ id, name }) => {
         {/* <span className="inline-block text-sm text-priamry-gray mb-5">
           {lastUpdate}
         </span> */}
-        <DocumentActions />
+        <DocumentActions id={id} />
       </div>
     </li>
   );
