@@ -15,7 +15,8 @@ export type TextAreaType = {
   label?: string;
   className?: string;
   value: string;
-  handler: (evt: React.ChangeEvent<HTMLInputElement>, key: string) => void;
+  handler: (evt: string) => void;
+  placeholder?: string;
 };
 
 export type OptionsType = {

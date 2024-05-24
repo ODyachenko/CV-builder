@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+@import 'easymde/dist/easymde.min.css';
 
 body {
   font-family: 'Inter', sans-serif;
@@ -23,6 +24,21 @@ body {
 .subtitle {
   font-size: 23px;
   font-weight: 700;
+}
+
+.CodeMirror-wrap,
+.editor-toolbar {
+  background: #eff2f9;
+}
+.editor-toolbar {
+  border: none;
+}
+.EasyMDEContainer .CodeMirror {
+  border: none;
+  border-top: 1px solid #ced4da;
+}
+.editor-statusbar {
+  display: none;
 }
 
 @media (min-width: 640px) {

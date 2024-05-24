@@ -9,6 +9,7 @@ const CVPreview: FC = () => {
   const { CV } = useAppSelector((state) => state.CVSLice);
   const { toPDF, targetRef } = usePDF({
     filename: `${CV.jobTitle.replace(' ', '_')}`,
+    method: 'open',
   });
 
   return (

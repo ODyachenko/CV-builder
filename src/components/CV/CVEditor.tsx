@@ -42,7 +42,7 @@ const CVEditor: FC = () => {
         <span className="block font-light text-priamry-gray">English</span>
       </div>
       <PersonalDetailsForm />
-      <SummaryForm handler={onChangeHandler} />
+      <SummaryForm />
       <CVBlock
         name="employment"
         title="Employment History"

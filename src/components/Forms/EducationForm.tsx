@@ -56,7 +56,7 @@ const EducationForm: FC<EducationType> = ({
       </fieldset>
       <TextArea
         value={description}
-        handler={(evt) => onChange(evt.target.value, 'description')}
+        handler={(evt) => onChange(evt, 'description')}
         label="Description"
       />
     </form>

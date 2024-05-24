@@ -1,13 +1,21 @@
-import React, { FC } from 'react';
-import { useAppSelector } from '../../hooks/hooks';
+import { FC, useCallback } from 'react';
+import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
+import { setCV } from '../../redux/slices/CVSlice';
 import TextArea from '../UI/TextArea';
 
-type SummaryFormProps = {
-  handler: (evt: React.ChangeEvent<HTMLInputElement>, name: string) => void;
-};
-
-const SummaryForm: FC<SummaryFormProps> = ({ handler }) => {
+const SummaryForm: FC = () => {
   const { CV } = useAppSelector((state) => state.CVSLice);
+  const dispatch = useAppDispatch();
+
+  const onChangeHandler = useCallback(
+    (value: string) => {
+      // console.log(value.replace(/\n/g, '!'));
+      console.log(value.split('\n'));
+
+      dispatch(setCV({ ...CV, ['profile']: value }));
+    },
+    [dispatch, CV]
+  );
 
   return (
     <div className="mb-10">
@@ -17,8 +25,12 @@ const SummaryForm: FC<SummaryFormProps> = ({ handler }) => {
         your role, experience & most importantly - your biggest achievements,
         best qualities and skills.
       </p>
-      <TextArea value={CV.profile} handler={(evt) => handler(evt, 'profile')} />
-      <div className="flex justify-between gap-3">
+      <TextArea
+        value={CV.profile}
+        handler={(evt) => onChangeHandler(evt)}
+        placeholder="e.g. Passionate science teacher with 8+ years of expericence and a track record of ..."
+      />
+      <div className="flex justify-between gap-3 mt-2">
         <p className="text-sm text-priamry-gray">
           Recruiter tip: write 400-600 characters to increase interview chances
         </p>

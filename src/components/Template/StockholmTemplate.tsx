@@ -6,7 +6,7 @@ import { languageLevels } from '../../data/languageLevels';
 
 const StockholmTemplate: FC<TemplateProps> = React.forwardRef(({ CV }, ref) => {
   return (
-    <div ref={ref} className="-snug bg-white rounded-lg py-10 px-14">
+    <div ref={ref} className="-snug bg-white rounded-lg py-10 px-14 ">
       <div className="flex items-center gap-4 mb-9">
         {CV.avatarUrl && (
           <img
@@ -24,13 +24,14 @@ const StockholmTemplate: FC<TemplateProps> = React.forwardRef(({ CV }, ref) => {
         <div className="col col-span-2">
           <div className="mb-9">
             <h2 className="flex items-center gap-2 font-bold mb-2">
-              <FaUser /> Profile
+              <FaUser size={20} />
+              Profile
             </h2>
             <p>{CV.profile}</p>
           </div>
           <div className="mb-9">
             <h2 className="flex items-center gap-2 font-bold mb-2">
-              <FaBriefcase /> Employment History
+              <FaBriefcase size={20} /> Employment History
             </h2>
             <ul>
               {CV.employments.map((employment) => (
@@ -51,7 +52,7 @@ const StockholmTemplate: FC<TemplateProps> = React.forwardRef(({ CV }, ref) => {
           </div>
           <div className="mb-9">
             <h2 className="flex items-center gap-2 font-bold mb-2">
-              <IoSchool /> Education
+              <IoSchool size={20} /> Education
             </h2>
             <ul>
               {CV.educations.map((education) => (
