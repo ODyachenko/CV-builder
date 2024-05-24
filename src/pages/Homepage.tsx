@@ -2,17 +2,16 @@ import { FC } from 'react';
 import Layout from '../components/Layout';
 import Btn from '../components/UI/Btn';
 import DocumentsList from '../components/Documents/DocumentsList';
+import { useCreateCVMutation } from '../redux/API/CVAPI';
 
 const Homepage: FC = () => {
-  const onClickHanlder = () => {
-    console.log('true');
-  };
+  const [createCV, { isLoading, error }] = useCreateCVMutation();
 
   return (
     <Layout className="documents">
       <div className="flex gap-4 items-center justify-between mb-5">
         <h1 className="title">Documents</h1>
-        <Btn className="flex items-center gap-1" handler={onClickHanlder}>
+        <Btn className="flex items-center gap-1" handler={() => createCV('')}>
           <svg
             width="20"
             height="20"

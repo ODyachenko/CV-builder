@@ -14,26 +14,28 @@ interface DnDAction {
   arrayName: string;
 }
 
+export const initialCV = {
+  id: '',
+  name: 'Untitled',
+  jobTitle: '',
+  firstName: '',
+  lastName: '',
+  avatarUrl: '',
+  email: '',
+  phone: '',
+  country: '',
+  city: '',
+  profile: '',
+  employments: [],
+  educations: [],
+  links: [],
+  skills: [],
+  languages: [],
+};
+
 // Define the initial state using that type
 const initialState: CVState = {
-  CV: {
-    id: '',
-    name: '',
-    jobTitle: '',
-    firstName: '',
-    lastName: '',
-    avatarUrl: '',
-    email: '',
-    phone: '',
-    country: '',
-    city: '',
-    profile: '',
-    employments: [],
-    educations: [],
-    links: [],
-    skills: [],
-    languages: [],
-  },
+  CV: initialCV,
 };
 
 export const CVSlice = createSlice({
