@@ -5,6 +5,7 @@ import { HiBadgeCheck } from 'react-icons/hi';
 import { TemplateProps } from '../../../@types';
 import { languageLevels } from '../../data/languageLevels';
 import { useAppSelector } from '../../hooks/hooks';
+import Markdown from 'markdown-to-jsx';
 
 const StockholmTemplate: FC<TemplateProps> = React.forwardRef(({ CV }, ref) => {
   const { lineSpacing } = useAppSelector((state) => state.CVSLice);
@@ -32,17 +33,22 @@ const StockholmTemplate: FC<TemplateProps> = React.forwardRef(({ CV }, ref) => {
         <div className="col col-span-2">
           {CV.profile && (
             <div className="mb-9">
-              <h2 className="flex items-center gap-2 font-bold mb-2">
-                <FaUser size={20} />
+              <h2 className="flex items-center gap-2 font-bold text-xl mb-2">
+                <FaUser />
                 Profile
               </h2>
-              <p>{CV.profile}</p>
+              <Markdown
+                options={{ forceWrapper: true, wrapper: 'div' }}
+                className="markdown"
+              >
+                {CV.profile}
+              </Markdown>
             </div>
           )}
           {!!CV.employments.length && (
             <div className="mb-9">
-              <h2 className="flex items-center gap-2 font-bold mb-2">
-                <FaBriefcase size={20} /> Employment History
+              <h2 className="flex items-center gap-2 font-bold text-xl mb-2">
+                <FaBriefcase /> Employment History
               </h2>
               <ul>
                 {CV.employments.map((employment) => (
@@ -56,7 +62,12 @@ const StockholmTemplate: FC<TemplateProps> = React.forwardRef(({ CV }, ref) => {
                       {employment.startDate &&
                         `${employment.startDate} - ${employment.endDate}`}
                     </span>
-                    <p>{employment.description}</p>
+                    <Markdown
+                      options={{ forceWrapper: true, wrapper: 'div' }}
+                      className="markdown"
+                    >
+                      {employment.description}
+                    </Markdown>
                   </li>
                 ))}
               </ul>
@@ -64,8 +75,8 @@ const StockholmTemplate: FC<TemplateProps> = React.forwardRef(({ CV }, ref) => {
           )}
           {!!CV.educations.length && (
             <div className="mb-9">
-              <h2 className="flex items-center gap-2 font-bold mb-2">
-                <IoSchool size={20} /> Education
+              <h2 className="flex items-center gap-2 font-bold text-xl mb-2">
+                <IoSchool /> Education
               </h2>
               <ul>
                 {CV.educations.map((education) => (
@@ -78,14 +89,19 @@ const StockholmTemplate: FC<TemplateProps> = React.forwardRef(({ CV }, ref) => {
                       {education.startDate &&
                         `${education.startDate} - ${education.endDate}`}
                     </span>
-                    <p>{education.description}</p>
+                    <Markdown
+                      options={{ forceWrapper: true, wrapper: 'div' }}
+                      className="markdown"
+                    >
+                      {education.description}
+                    </Markdown>
                   </li>
                 ))}
               </ul>
             </div>
           )}
           <div className="mb-9">
-            <h2 className="flex items-center gap-2 font-bold mb-2">
+            <h2 className="flex items-center gap-2 font-bold text-xl mb-2">
               <HiBadgeCheck size={20} /> Courses
             </h2>
             <ul>
