@@ -89,6 +89,14 @@ export type SkillType = {
   level: number;
 };
 
+export type CourseType = {
+  id: string;
+  course: string;
+  institution: string;
+  startDate: string;
+  endDate: string;
+};
+
 export type CVBlockType = {
   title: string;
   text?: string;
@@ -112,6 +120,7 @@ export type CVType = {
   educations: EducationType[];
   links: SocialLinkType[];
   skills: SkillType[];
+  courses: CourseType[];
   languages: LanguageType[];
 };
 

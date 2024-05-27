@@ -14,12 +14,14 @@ import CreateBtn from '../UI/CreateBtn';
 import SummaryForm from '../Forms/SummaryForm';
 import useCreate from '../../hooks/useCreate';
 import {
+  newCourse,
   newEducation,
   newEmployment,
   newLanguage,
   newLink,
   newSkill,
 } from '../../data/initialValues';
+import CourseList from '../Lists/CourseList/CourseList';
 
 const CVEditor: FC = () => {
   const { CV } = useAppSelector((state) => state.CVSLice);
@@ -95,6 +97,13 @@ const CVEditor: FC = () => {
         <CreateBtn
           value="skill"
           handler={() => createItem('skills', newSkill)}
+        />
+      </CVBlock>
+      <CVBlock name="courses" title="Courses">
+        <CourseList list={CV.courses} />
+        <CreateBtn
+          value="course"
+          handler={() => createItem('courses', newCourse)}
         />
       </CVBlock>
 

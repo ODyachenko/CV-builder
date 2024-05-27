@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { FaUser, FaBriefcase } from 'react-icons/fa';
 import { IoSchool } from 'react-icons/io5';
+import { HiBadgeCheck } from 'react-icons/hi';
 import { TemplateProps } from '../../../@types';
 import { languageLevels } from '../../data/languageLevels';
 import { useAppSelector } from '../../hooks/hooks';
@@ -83,6 +84,25 @@ const StockholmTemplate: FC<TemplateProps> = React.forwardRef(({ CV }, ref) => {
               </ul>
             </div>
           )}
+          <div className="mb-9">
+            <h2 className="flex items-center gap-2 font-bold mb-2">
+              <HiBadgeCheck size={20} /> Courses
+            </h2>
+            <ul>
+              {CV.courses.map((course) => (
+                <li key={course.id} className="mb-4 last:mb-0">
+                  <h3 className="font-bold mb-1">
+                    {course.course &&
+                      `${course.course} at ${course.institution}`}
+                  </h3>
+                  <span className="inline-block text-sm font-light text-priamry-gray mb-2">
+                    {course.startDate &&
+                      `${course.startDate} - ${course.endDate}`}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         <div className="col">
@@ -128,6 +148,7 @@ const StockholmTemplate: FC<TemplateProps> = React.forwardRef(({ CV }, ref) => {
               )}
             </ul>
           </div>
+
           <div>
             <h3 className="font-bold mb-2">Languages</h3>
             <ul>

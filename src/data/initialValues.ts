@@ -14,6 +14,7 @@ export const initialCV = {
   educations: [],
   links: [],
   skills: [],
+  courses: [],
   languages: [],
 };
 
@@ -21,6 +22,14 @@ export const newSkill = {
   id: '',
   skill: '',
   level: 3,
+};
+
+export const newCourse = {
+  id: '',
+  course: '',
+  institution: '',
+  startDate: '',
+  endDate: '',
 };
 
 export const newLanguage = {
