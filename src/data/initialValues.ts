@@ -1,5 +1,3 @@
-import { v4 } from 'uuid';
-
 export const initialCV = {
   id: '',
   name: 'Untitled',
@@ -20,25 +18,25 @@ export const initialCV = {
 };
 
 export const newSkill = {
-  id: v4(),
+  id: '',
   skill: '',
   level: 3,
 };
 
 export const newLanguage = {
-  id: v4(),
+  id: '',
   language: '',
   level: 0,
 };
 
 export const newLink = {
-  id: v4(),
+  id: '',
   label: '',
   link: '',
 };
 
 export const newEducation = {
-  id: v4(),
+  id: '',
   school: '',
   degree: '',
   startDate: '',
@@ -48,7 +46,7 @@ export const newEducation = {
 };
 
 export const newEmployment = {
-  id: v4(),
+  id: '',
   jobTitle: '',
   employer: '',
   startDate: '',

@@ -9,9 +9,6 @@ const SummaryForm: FC = () => {
 
   const onChangeHandler = useCallback(
     (value: string) => {
-      // console.log(value.replace(/\n/g, '!'));
-      console.log(value.split('\n'));
-
       dispatch(setCV({ ...CV, ['profile']: value }));
     },
     [dispatch, CV]

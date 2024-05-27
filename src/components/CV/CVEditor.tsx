@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { v4 } from 'uuid';
 import Layout from '../Layout';
 import PersonalDetailsForm from '../Forms/PersonalDetailsForm';
 import CVBlock from './CVBlock';
@@ -23,7 +24,7 @@ import {
 const CVEditor: FC = () => {
   const { CV } = useAppSelector((state) => state.CVSLice);
   const dispatch = useAppDispatch();
-  const createItem = useCreate();
+  const createItem = useCreate(v4());
 
   const onChangeHandler = (
     evt: React.ChangeEvent<HTMLInputElement>,
@@ -33,7 +34,7 @@ const CVEditor: FC = () => {
   };
 
   return (
-    <Layout>
+    <Layout className="overflow-auto">
       <div className="text-center mb-10">
         <input
           className="font-bold text-xl text-center mb-2 focus:outline-none focus:border-b-2 border-solid border-primary-blue"

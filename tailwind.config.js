@@ -10,6 +10,9 @@ export default {
         'field-bg': '#eff2f9',
         'dark-gray': '#656e83',
       },
+      aspectRatio: {
+        A4: '1 / 1.3',
+      },
     },
   },
   plugins: [],

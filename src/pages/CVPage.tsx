@@ -16,7 +16,7 @@ const CVPage: FC = () => {
   }, [data, dispatch]);
 
   return (
-    <main className="grid grid-cols-2">
+    <main className="h-screen grid grid-cols-2">
       <CVEditor />
       <CVPreview />
     </main>

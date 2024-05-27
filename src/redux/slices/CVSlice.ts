@@ -6,6 +6,7 @@ import { CVType } from '../../../@types';
 
 interface CVState {
   CV: CVType;
+  lineSpacing: number;
 }
 
 interface DnDAction {
@@ -17,6 +18,7 @@ interface DnDAction {
 // Define the initial state using that type
 const initialState: CVState = {
   CV: initialCV,
+  lineSpacing: 1.3,
 };
 
 export const CVSlice = createSlice({
@@ -26,13 +28,20 @@ export const CVSlice = createSlice({
     setCV: (state, action: PayloadAction<CVType>) => {
       state.CV = action.payload;
     },
+    incrementLineSpacing: (state) => {
+      state.lineSpacing += 0.1;
+    },
+    decrementLineSpacing: (state) => {
+      state.lineSpacing -= 0.1;
+    },
+
     setDndIndexes: (state, action: PayloadAction<DnDAction>) => {
       const arrayName = action.payload.arrayName;
       const oldIndex = state.CV[arrayName].findIndex(
-        (item) => item.id === action.payload.activeId
+        (item: { id: string | number }) => item.id === action.payload.activeId
       );
       const newIndex = state.CV[arrayName].findIndex(
-        (item) => item.id === action.payload.overId
+        (item: { id: string | number }) => item.id === action.payload.overId
       );
 
       state.CV = {
@@ -43,5 +52,10 @@ export const CVSlice = createSlice({
   },
 });
 
-export const { setCV, setDndIndexes } = CVSlice.actions;
+export const {
+  setCV,
+  incrementLineSpacing,
+  decrementLineSpacing,
+  setDndIndexes,
+} = CVSlice.actions;
 export default CVSlice.reducer;
