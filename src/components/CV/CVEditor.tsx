@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { v4 } from 'uuid';
 import Layout from '../Layout';
 import PersonalDetailsForm from '../Forms/PersonalDetailsForm';
@@ -22,9 +22,16 @@ import {
   newSkill,
 } from '../../data/initialValues';
 import CourseList from '../Lists/CourseList/CourseList';
+import useLocalStorage from '../../hooks/useLocalStorage';
+import { useTranslation } from 'react-i18next';
+import i18n from '../../i18n';
+import SelectField from '../UI/SelectField';
+import { languageList } from '../../data/languageList';
 
 const CVEditor: FC = () => {
   const { CV } = useAppSelector((state) => state.CVSLice);
+  const [language, setLanguage] = useLocalStorage('language', 'en');
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const createItem = useCreate(v4());
 
@@ -33,6 +40,16 @@ const CVEditor: FC = () => {
     key: string
   ) => {
     dispatch(setCV({ ...CV, [key]: evt.target.value }));
+  };
+
+  const handleLanguageChange = () => {
+    if (language === 'en') {
+      i18n.changeLanguage('ua');
+      setLanguage('ua');
+    } else if (language === 'ua') {
+      i18n.changeLanguage('en');
+      setLanguage('en');
+    }
   };
 
   return (
@@ -45,15 +62,20 @@ const CVEditor: FC = () => {
           onChange={(evt) => onChangeHandler(evt, 'name')}
         />
         <span className="block font-light text-priamry-gray">English</span>
+        <SelectField
+          options={languageList}
+          value={languageList[0].value}
+          handler={handleLanguageChange}
+        />
       </div>
       <PersonalDetailsForm />
       <SummaryForm />
       <CVBlock
         name="employment"
-        title="Employment History"
-        text="Show your relevant experience (last 10 years). Use bullet points to
-          note your achievements, if possible - use numbers/facts (Achieved X,
-          measured by Y, by doing Z)."
+        title={t('Employment History')}
+        text={t(
+          'Show your relevant experience (last 10 years). Use bullet points to note your achievements, if possible - use numbers/facts (Achieved X, measured by Y, by doing Z).'
+        )}
       >
         <EmploymentList list={CV.employments} />
         <CreateBtn
@@ -64,9 +86,10 @@ const CVEditor: FC = () => {
 
       <CVBlock
         name="education"
-        title="Education"
-        text="A varied education on your resume sums up the value that your
-        learnings and background will bring to job."
+        title={t('Education')}
+        text={t(
+          'A varied education on your resume sums up the value that your learnings and background will bring to job.'
+        )}
       >
         <EducationList list={CV.educations} />
         <CreateBtn
@@ -77,10 +100,10 @@ const CVEditor: FC = () => {
 
       <CVBlock
         name="link"
-        title="Websites & Social Links"
-        text="You can add links to websites you want hiring managers to see! Perhaps
-        It will be a link to your portfolio, LinkedIn profile, or personal
-        website"
+        title={t('Websites & Social Links')}
+        text={t(
+          'You can add links to websites you want hiring managers to see! Perhaps It will be a link to your portfolio, LinkedIn profile, or personal website'
+        )}
       >
         <SocialList list={CV.links} />
         <CreateBtn value="link" handler={() => createItem('links', newLink)} />
@@ -88,10 +111,10 @@ const CVEditor: FC = () => {
 
       <CVBlock
         name="skill"
-        title="Skills"
-        text=" Choose 5 important skills that show you fit the position. Make sure
-        they match the key skills mentioned in the job listing (especially
-        when applying via an online system)."
+        title={t('Skills')}
+        text={t(
+          'Choose 5 important skills that show you fit the position. Make sure they match the key skills mentioned in the job listing (especially when applying via an online system).'
+        )}
       >
         <SkillList list={CV.skills} />
         <CreateBtn
@@ -99,7 +122,7 @@ const CVEditor: FC = () => {
           handler={() => createItem('skills', newSkill)}
         />
       </CVBlock>
-      <CVBlock name="courses" title="Courses">
+      <CVBlock name="courses" title={t('Courses')}>
         <CourseList list={CV.courses} />
         <CreateBtn
           value="course"
@@ -107,7 +130,7 @@ const CVEditor: FC = () => {
         />
       </CVBlock>
 
-      <CVBlock name="language" title="Languages">
+      <CVBlock name="language" title={t('Languages')}>
         <LanguageList list={CV.languages} />
         <CreateBtn
           value="language"

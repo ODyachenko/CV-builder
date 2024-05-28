@@ -3,6 +3,7 @@ import InputField from '../UI/InputField';
 import TextArea from '../UI/TextArea';
 import { EmploymentType } from '../../../@types';
 import useUpdate from '../../hooks/useUpdate';
+import { useTranslation } from 'react-i18next';
 
 const EmploymentForm: FC<EmploymentType> = ({
   id,
@@ -13,25 +14,26 @@ const EmploymentForm: FC<EmploymentType> = ({
   city,
   description,
 }) => {
+  const { t } = useTranslation();
   const onChange = useUpdate(id, 'employments');
 
   return (
     <form className="py-4 px-5">
       <fieldset className="grid grid-cols-2 gap-6 mb-6">
         <InputField
-          label="Job title"
+          label={t('Job title')}
           value={jobTitle}
           handler={(evt) => onChange(evt.target.value, 'jobTitle')}
         />
         <InputField
-          label="Employer"
+          label={t('Employer')}
           value={employer}
           handler={(evt) => onChange(evt.target.value, 'employer')}
         />
         <fieldset>
           <label>
             <span className="block text-sm font-light text-priamry-gray mb-1">
-              Start & End Date
+              {t('Start & End Date')}
             </span>
             <span className="grid grid-cols-2 gap-3">
               <InputField
@@ -48,7 +50,7 @@ const EmploymentForm: FC<EmploymentType> = ({
           </label>
         </fieldset>
         <InputField
-          label="City"
+          label={t('City')}
           value={city}
           handler={(evt) => onChange(evt.target.value, 'city')}
           name="city"
@@ -57,7 +59,7 @@ const EmploymentForm: FC<EmploymentType> = ({
       <TextArea
         value={description}
         handler={(evt) => onChange(evt, 'description')}
-        label="Description"
+        label={t('Description')}
       />
     </form>
   );
