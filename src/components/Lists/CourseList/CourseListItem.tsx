@@ -7,6 +7,7 @@ import { RiDraggable } from 'react-icons/ri';
 import { CourseType } from '../../../../@types';
 import useDelete from '../../../hooks/useDelete';
 import CourseForm from '../../Forms/CourseForm';
+import { convertDate } from '../../../utils/convertDate';
 
 type CourseListItemProps = {
   item: CourseType;
@@ -49,7 +50,7 @@ const CourseListItem: FC<CourseListItemProps> = ({ item }) => {
                   : 'Not specified'}
               </h3>
               <span className="font-light text-priamry-gray">
-                {item.startDate} - {item.endDate}
+                {convertDate(item.startDate)} - {convertDate(item.endDate)}
               </span>
             </div>
             <IoChevronDown size={20} />

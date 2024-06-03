@@ -6,9 +6,13 @@ import { TemplateProps } from '../../../@types';
 import { languageLevels } from '../../data/languageLevels';
 import { useAppSelector } from '../../hooks/hooks';
 import Markdown from 'markdown-to-jsx';
+import { useTranslation } from 'react-i18next';
+import dayjs from 'dayjs';
+import { convertDate } from '../../utils/convertDate';
 
 const StockholmTemplate: FC<TemplateProps> = React.forwardRef(({ CV }, ref) => {
   const { lineSpacing } = useAppSelector((state) => state.CVSLice);
+  const { t } = useTranslation();
 
   return (
     <div
@@ -35,7 +39,7 @@ const StockholmTemplate: FC<TemplateProps> = React.forwardRef(({ CV }, ref) => {
             <div className="mb-9">
               <h2 className="flex items-center gap-2 font-bold text-xl mb-2">
                 <FaUser />
-                Profile
+                {t('Profile')}
               </h2>
               <Markdown
                 options={{ forceWrapper: true, wrapper: 'div' }}
@@ -48,7 +52,7 @@ const StockholmTemplate: FC<TemplateProps> = React.forwardRef(({ CV }, ref) => {
           {!!CV.employments.length && (
             <div className="mb-9">
               <h2 className="flex items-center gap-2 font-bold text-xl mb-2">
-                <FaBriefcase /> Employment History
+                <FaBriefcase /> {t('Employment History')}
               </h2>
               <ul>
                 {CV.employments.map((employment) => (
@@ -60,7 +64,9 @@ const StockholmTemplate: FC<TemplateProps> = React.forwardRef(({ CV }, ref) => {
                     </h3>
                     <span className="inline-block text-sm font-light text-priamry-gray mb-2">
                       {employment.startDate &&
-                        `${employment.startDate} - ${employment.endDate}`}
+                        `${convertDate(employment.startDate)} - ${convertDate(
+                          employment.endDate
+                        )}`}
                     </span>
                     <Markdown
                       options={{ forceWrapper: true, wrapper: 'div' }}
@@ -76,7 +82,7 @@ const StockholmTemplate: FC<TemplateProps> = React.forwardRef(({ CV }, ref) => {
           {!!CV.educations.length && (
             <div className="mb-9">
               <h2 className="flex items-center gap-2 font-bold text-xl mb-2">
-                <IoSchool /> Education
+                <IoSchool /> {t('Education')}
               </h2>
               <ul>
                 {CV.educations.map((education) => (
@@ -87,7 +93,9 @@ const StockholmTemplate: FC<TemplateProps> = React.forwardRef(({ CV }, ref) => {
                     </h3>
                     <span className="inline-block text-sm font-light text-priamry-gray mb-2">
                       {education.startDate &&
-                        `${education.startDate} - ${education.endDate}`}
+                        `${convertDate(education.startDate)} - ${convertDate(
+                          education.endDate
+                        )}`}
                     </span>
                     <Markdown
                       options={{ forceWrapper: true, wrapper: 'div' }}
@@ -102,7 +110,7 @@ const StockholmTemplate: FC<TemplateProps> = React.forwardRef(({ CV }, ref) => {
           )}
           <div className="mb-9">
             <h2 className="flex items-center gap-2 font-bold text-xl mb-2">
-              <HiBadgeCheck size={20} /> Courses
+              <HiBadgeCheck size={20} /> {t('Courses')}
             </h2>
             <ul>
               {CV.courses.map((course) => (
@@ -113,7 +121,9 @@ const StockholmTemplate: FC<TemplateProps> = React.forwardRef(({ CV }, ref) => {
                   </h3>
                   <span className="inline-block text-sm font-light text-priamry-gray mb-2">
                     {course.startDate &&
-                      `${course.startDate} - ${course.endDate}`}
+                      `${convertDate(course.startDate)} - ${convertDate(
+                        course.endDate
+                      )}`}
                   </span>
                 </li>
               ))}
@@ -123,7 +133,7 @@ const StockholmTemplate: FC<TemplateProps> = React.forwardRef(({ CV }, ref) => {
 
         <div className="col">
           <div className="mb-9">
-            <h3 className="font-bold mb-2">Details</h3>
+            <h3 className="font-bold mb-2">{t('Details')}</h3>
             <h4 className="mb-2">{CV.city}</h4>
             <h4 className="mb-2">{CV.country}</h4>
             <a
@@ -137,7 +147,7 @@ const StockholmTemplate: FC<TemplateProps> = React.forwardRef(({ CV }, ref) => {
             </a>
           </div>
           <div className="mb-9">
-            <h3 className="font-bold mb-2">Links</h3>
+            <h3 className="font-bold mb-2">{t('Links')}</h3>
             <ul>
               {CV.links.map((link) => (
                 <li className="text-primary-blue mb-1" key={link.id}>
@@ -149,7 +159,7 @@ const StockholmTemplate: FC<TemplateProps> = React.forwardRef(({ CV }, ref) => {
             </ul>
           </div>
           <div className="mb-9">
-            <h3 className="font-bold mb-2">Skills</h3>
+            <h3 className="font-bold mb-2">{t('Skills')}</h3>
             <ul>
               {CV.skills.map(
                 (skill, index) =>
@@ -166,7 +176,7 @@ const StockholmTemplate: FC<TemplateProps> = React.forwardRef(({ CV }, ref) => {
           </div>
 
           <div>
-            <h3 className="font-bold mb-2">Languages</h3>
+            <h3 className="font-bold mb-2">{t('Languages')}</h3>
             <ul>
               {CV.languages.map(
                 (language) =>

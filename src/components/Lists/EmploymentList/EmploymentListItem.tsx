@@ -7,6 +7,7 @@ import { MdDeleteOutline } from 'react-icons/md';
 import { RiDraggable } from 'react-icons/ri';
 import EmploymentForm from '../../Forms/EmploymentForm';
 import useDelete from '../../../hooks/useDelete';
+import { convertDate } from '../../../utils/convertDate';
 
 type EmploymentListItemProps = {
   item: EmploymentType;
@@ -51,7 +52,9 @@ const EmploymentListItem: FC<EmploymentListItemProps> = ({ item }) => {
               <span className="font-light text-priamry-gray">
                 {item.startDate &&
                   item.endDate &&
-                  `${item.startDate} - ${item.endDate}`}
+                  `${convertDate(item.startDate)} - ${convertDate(
+                    item.endDate
+                  )}`}
               </span>
             </div>
             <IoChevronDown size={20} />

@@ -3,6 +3,7 @@ import React from 'react';
 export type InputFieldType = {
   value: string;
   handler: (evt: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlur?: () => void;
   className?: string;
   label?: string;
   placeholder?: string;

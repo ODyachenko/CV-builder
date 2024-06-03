@@ -7,7 +7,8 @@
   "Country": "Країна",
   "City": "Місто",
   "Upload Photo": "Завантажити фото",
-  "Professional Summary": "Характеристика",
+  "Professional Summary": "Про себе",
+  "Profile": "Про себе",
   "Write 2-4 short & energetic sentences to interest the reader! Mention your role, experience & most importantly - your biggest achievements, best qualities and skills.": "Напишіть 2-4 коротких та енергійних речення, щоб зацікавити читача! Згадайте свою роль, досвід і, що найголовніше, – ваші найбільші досягнення, найкращі якості та вміння.",
   "Recruiter tip: write 400-600 characters to increase interview chances": "Порада для рекрутера: пишіть 400-600 символів, щоб збільшити шанси на співбесіду",
   "Employment History": "Історія працевлаштувань",
@@ -20,6 +21,7 @@
   "School": "Навчальний заклад",
   "Degree": "Ступінь",
   "Websites & Social Links": "Посилання",
+  "Links": "Посилання",
   "You can add links to websites you want hiring managers to see! Perhaps It will be a link to your portfolio, LinkedIn profile, or personal website": "Ви можете додати посилання на веб-сайти, які ви хочете бачити менеджерам з найму! Можливо, це буде посилання на ваше портфоліо, профіль LinkedIn або особистий веб-сайт",
   "Label": "Назва",
   "Link": "Посилання",
@@ -32,5 +34,6 @@
   "Course": "Курс",
   "Institution": "Інституція",
   "Languages": "Мови",
-  "Language": "Мова"
+  "Language": "Мова",
+  "Details": "Деталі"
 }

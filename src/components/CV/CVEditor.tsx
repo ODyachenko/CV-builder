@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 import { v4 } from 'uuid';
 import Layout from '../Layout';
 import PersonalDetailsForm from '../Forms/PersonalDetailsForm';
@@ -61,12 +61,15 @@ const CVEditor: FC = () => {
           value={CV.name}
           onChange={(evt) => onChangeHandler(evt, 'name')}
         />
-        <span className="block font-light text-priamry-gray">English</span>
-        <SelectField
-          options={languageList}
-          value={languageList[0].value}
-          handler={handleLanguageChange}
-        />
+        {/* @TODO */}
+        <div>
+          <SelectField
+            className="inline-block "
+            options={languageList}
+            value={languageList[0].value}
+            handler={handleLanguageChange}
+          />
+        </div>
       </div>
       <PersonalDetailsForm />
       <SummaryForm />

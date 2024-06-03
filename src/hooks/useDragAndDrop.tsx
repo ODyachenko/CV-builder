@@ -7,10 +7,13 @@ import {
 } from '@dnd-kit/core';
 import { sortableKeyboardCoordinates } from '@dnd-kit/sortable';
 import { DragEndEvent } from '@dnd-kit/core';
-import { useAppDispatch } from './hooks';
+import { useAppDispatch, useAppSelector } from './hooks';
 import { setDndIndexes } from '../redux/slices/CVSlice';
+import { useUpdateCVMutation } from '../redux/API/CVAPI';
 
 const useDragAndDrop = (arrayName: string) => {
+  const { CV } = useAppSelector((state) => state.CVSLice);
+  const [updateCV] = useUpdateCVMutation();
   const dispatch = useAppDispatch();
 
   const sensors = useSensors(
@@ -31,8 +34,9 @@ const useDragAndDrop = (arrayName: string) => {
           dispatch(setDndIndexes({ activeId, overId, arrayName }));
         }
       }
+      updateCV(CV);
     },
-    [dispatch, arrayName]
+    [dispatch, arrayName, updateCV, CV]
   );
 
   return { sensors, handleDragEnd };

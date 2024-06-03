@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { InputFieldType } from '../../../@types';
+import useBlur from '../../hooks/useBlur';
 
 const InputField: FC<InputFieldType> = ({
   value,
@@ -11,6 +12,8 @@ const InputField: FC<InputFieldType> = ({
   name,
   autoComplete,
 }) => {
+  const onBlur = useBlur();
+
   return (
     <label className={`${className ? className : ''}`}>
       <span className="block text-sm font-light text-priamry-gray mb-1">
@@ -21,6 +24,7 @@ const InputField: FC<InputFieldType> = ({
         type={type}
         value={value}
         onChange={handler}
+        onBlur={onBlur}
         placeholder={placeholder}
         name={name}
         autoComplete={autoComplete}
