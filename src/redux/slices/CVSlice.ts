@@ -34,7 +34,6 @@ export const CVSlice = createSlice({
     decrementLineSpacing: (state) => {
       state.lineSpacing -= 0.1;
     },
-
     setDndIndexes: (state, action: PayloadAction<DnDAction>) => {
       const arrayName = action.payload.arrayName;
       const oldIndex = state.CV[arrayName].findIndex(

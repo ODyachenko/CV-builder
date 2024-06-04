@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 import Select from 'react-select';
 import { SelectType } from '../../../@types';
-import useBlur from '../../hooks/useBlur';
 
 const colorStyles = {
   control: (styles: any) => ({
@@ -21,9 +20,8 @@ const SelectField: FC<SelectType> = ({
   placeholder,
   value,
   handler,
+  onBlur,
 }) => {
-  const onBlur = useBlur();
-
   return (
     <label className={`${className ? className : ''}`}>
       <span className="block text-sm font-light text-priamry-gray mb-1">

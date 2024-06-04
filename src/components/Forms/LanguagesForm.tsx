@@ -5,10 +5,12 @@ import { LanguageType } from '../../../@types';
 import { languageLevels } from '../../data/languageLevels';
 import useUpdate from '../../hooks/useUpdate';
 import { useTranslation } from 'react-i18next';
+import useBlur from '../../hooks/useBlur';
 
 const LanguagesForm: FC<LanguageType> = ({ language, level, id }) => {
   const { t } = useTranslation();
   const onChange = useUpdate(id, 'languages');
+  const onBlur = useBlur();
 
   return (
     <form className="py-4 px-5">
@@ -22,6 +24,7 @@ const LanguagesForm: FC<LanguageType> = ({ language, level, id }) => {
           options={languageLevels}
           value={level}
           handler={(evt) => onChange(evt.value, 'level')}
+          onBlur={onBlur}
           label={t('Level')}
           placeholder="Select level"
         />

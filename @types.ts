@@ -25,6 +25,12 @@ export type OptionsType = {
   label: string;
 };
 
+export type LanguageListType = {
+  value: number;
+  label: string;
+  iso: string;
+};
+
 export type SelectType = {
   options: OptionsType[];
   label?: string;
@@ -32,6 +38,7 @@ export type SelectType = {
   className?: string;
   value: number;
   handler: (evt: React.ChangeEvent<HTMLSelectElement>, key: string) => void;
+  onBlur?: () => void;
 };
 
 export type BtnType = {

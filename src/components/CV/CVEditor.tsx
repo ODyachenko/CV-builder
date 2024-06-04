@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { v4 } from 'uuid';
 import Layout from '../Layout';
 import PersonalDetailsForm from '../Forms/PersonalDetailsForm';
@@ -27,6 +27,7 @@ import { useTranslation } from 'react-i18next';
 import i18n from '../../i18n';
 import SelectField from '../UI/SelectField';
 import { languageList } from '../../data/languageList';
+import { getLanguageIndex } from '../../utils/getLanguageIndex';
 
 const CVEditor: FC = () => {
   const { CV } = useAppSelector((state) => state.CVSLice);
@@ -42,13 +43,10 @@ const CVEditor: FC = () => {
     dispatch(setCV({ ...CV, [key]: evt.target.value }));
   };
 
-  const handleLanguageChange = () => {
-    if (language === 'en') {
-      i18n.changeLanguage('ua');
-      setLanguage('ua');
-    } else if (language === 'ua') {
-      i18n.changeLanguage('en');
-      setLanguage('en');
+  const handleLanguageChange = (evt: any) => {
+    if (language !== evt.iso) {
+      i18n.changeLanguage(evt.iso);
+      setLanguage(evt.iso);
     }
   };
 
@@ -61,12 +59,11 @@ const CVEditor: FC = () => {
           value={CV.name}
           onChange={(evt) => onChangeHandler(evt, 'name')}
         />
-        {/* @TODO */}
         <div>
           <SelectField
             className="inline-block "
             options={languageList}
-            value={languageList[0].value}
+            value={getLanguageIndex(languageList, language)}
             handler={handleLanguageChange}
           />
         </div>

@@ -15,12 +15,6 @@ type SkillListProps = {
 const SkillList: FC<SkillListProps> = ({ list }) => {
   const { sensors, handleDragEnd } = useDragAndDrop('skills');
 
-  // TODO just one time change order
-  // const onDragEnd = (event: DragEndEvent) => {
-  //   handleDragEnd(event);
-  //   updateCV(CV);
-  // };
-
   return (
     <DndContext
       sensors={sensors}

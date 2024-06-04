@@ -38,15 +38,27 @@ const EducationForm: FC<EducationType> = ({
               {t('Start & End Date')}
             </span>
             <span className="grid grid-cols-2 gap-3">
-              <DatePicker
+              {/* <DatePicker
+                className="w-full bg-field-bg"
                 views={['month', 'year']}
                 value={dayjs(startDate)}
                 onChange={(newValue) => onChange(String(newValue), 'startDate')}
               />
               <DatePicker
+                className="w-full bg-field-bg"
                 views={['month', 'year']}
                 value={dayjs(endDate)}
                 onChange={(newValue) => onChange(String(newValue), 'endDate')}
+              /> */}
+              <InputField
+                type="month"
+                value={startDate}
+                handler={(evt) => onChange(evt.target.value, 'startDate')}
+              />
+              <InputField
+                type="month"
+                value={endDate}
+                handler={(evt) => onChange(evt.target.value, 'endDate')}
               />
             </span>
           </label>

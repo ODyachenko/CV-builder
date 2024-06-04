@@ -5,10 +5,12 @@ import { SkillType } from '../../../@types';
 import { skillLevels } from '../../data/skillLevels';
 import useUpdate from '../../hooks/useUpdate';
 import { useTranslation } from 'react-i18next';
+import useBlur from '../../hooks/useBlur';
 
 const SkillForm: FC<SkillType> = ({ skill, level, id }) => {
   const { t } = useTranslation();
   const onChange = useUpdate(id, 'skills');
+  const onBlur = useBlur();
 
   return (
     <form className="py-4 px-5">
@@ -24,6 +26,7 @@ const SkillForm: FC<SkillType> = ({ skill, level, id }) => {
           placeholder="Select level"
           value={level}
           handler={(evt) => onChange(evt.value, 'level')}
+          onBlur={onBlur}
         />
       </fieldset>
     </form>

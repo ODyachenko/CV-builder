@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import {
   useSensors,
   useSensor,
@@ -13,8 +13,16 @@ import { useUpdateCVMutation } from '../redux/API/CVAPI';
 
 const useDragAndDrop = (arrayName: string) => {
   const { CV } = useAppSelector((state) => state.CVSLice);
+  const [update, setUpdate] = useState(false);
   const [updateCV] = useUpdateCVMutation();
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (update) {
+      updateCV(CV);
+      setUpdate(false);
+    }
+  }, [CV, updateCV, update]);
 
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -32,11 +40,11 @@ const useDragAndDrop = (arrayName: string) => {
 
         if (activeId !== overId) {
           dispatch(setDndIndexes({ activeId, overId, arrayName }));
+          setUpdate(true);
         }
       }
-      updateCV(CV);
     },
-    [dispatch, arrayName, updateCV, CV]
+    [dispatch, arrayName]
   );
 
   return { sensors, handleDragEnd };

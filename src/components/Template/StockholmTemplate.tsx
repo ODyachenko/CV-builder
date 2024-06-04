@@ -7,7 +7,6 @@ import { languageLevels } from '../../data/languageLevels';
 import { useAppSelector } from '../../hooks/hooks';
 import Markdown from 'markdown-to-jsx';
 import { useTranslation } from 'react-i18next';
-import dayjs from 'dayjs';
 import { convertDate } from '../../utils/convertDate';
 
 const StockholmTemplate: FC<TemplateProps> = React.forwardRef(({ CV }, ref) => {
