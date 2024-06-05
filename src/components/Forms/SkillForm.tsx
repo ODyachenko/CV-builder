@@ -25,7 +25,7 @@ const SkillForm: FC<SkillType> = ({ skill, level, id }) => {
           label={t('Level')}
           placeholder="Select level"
           value={level}
-          handler={(evt) => onChange(evt.value, 'level')}
+          handler={(evt) => onChange(String(evt?.value), 'level')}
           onBlur={onBlur}
         />
       </fieldset>

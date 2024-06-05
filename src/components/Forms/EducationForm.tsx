@@ -4,8 +4,6 @@ import TextArea from '../UI/TextArea';
 import { EducationType } from '../../../@types';
 import useUpdate from '../../hooks/useUpdate';
 import { useTranslation } from 'react-i18next';
-import { DatePicker } from '@mui/x-date-pickers';
-import dayjs from 'dayjs';
 
 const EducationForm: FC<EducationType> = ({
   id,

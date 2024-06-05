@@ -13,7 +13,7 @@ const CVPreview: FC = () => {
   });
 
   return (
-    <Layout className="bg-dark-gray">
+    <Layout className="hidden bg-dark-gray min-[1220px]:block">
       <TemplateInner handler={toPDF} />
       <StockholmTemplate CV={CV} ref={targetRef} />
     </Layout>

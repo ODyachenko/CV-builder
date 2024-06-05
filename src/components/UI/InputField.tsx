@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import { InputFieldType } from '../../../@types';
 import useBlur from '../../hooks/useBlur';
+import { InputFieldType } from '../../../@types';
 
 const InputField: FC<InputFieldType> = ({
   value,

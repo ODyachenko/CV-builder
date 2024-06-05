@@ -6,7 +6,6 @@ import { setCV } from '../../redux/slices/CVSlice';
 
 const boxStyle = {
   width: '500px',
-  //   height: '500px',
   display: 'flex',
   flexFlow: 'column',
   justifyContent: 'center',
@@ -35,8 +34,8 @@ const CropperModal: FC<CropperModalProps> = ({
   setModalOpen,
 }) => {
   const { CV } = useAppSelector((state) => state.CVSLice);
-  const [slideValue, setSlideValue] = useState(10);
-  const cropRef = useRef(null);
+  const [slideValue, setSlideValue] = useState<number | number[]>(10);
+  const cropRef = useRef<InstanceType<typeof AvatarEditor>>(null);
   const dispatch = useAppDispatch();
 
   const handleSave = async () => {
@@ -47,6 +46,11 @@ const CropperModal: FC<CropperModalProps> = ({
       dispatch(setCV({ ...CV, avatarUrl: URL.createObjectURL(blob) }));
       setModalOpen(false);
     }
+  };
+
+  const handleChange = (event: Event, newValue: number | number[]) => {
+    event;
+    setSlideValue(newValue);
   };
 
   const onCLickCancel = () => {
@@ -64,7 +68,7 @@ const CropperModal: FC<CropperModalProps> = ({
           border={50}
           borderRadius={150}
           color={[0, 0, 0, 0.72]}
-          scale={slideValue / 10}
+          scale={Number(slideValue) / 10}
           rotate={0}
         />
         <Slider
@@ -78,7 +82,7 @@ const CropperModal: FC<CropperModalProps> = ({
           size="medium"
           defaultValue={slideValue}
           value={slideValue}
-          onChange={(e) => setSlideValue(e.target.value)}
+          onChange={handleChange}
         />
         <Box
           sx={{

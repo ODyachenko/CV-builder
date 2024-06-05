@@ -1,4 +1,5 @@
 import React from 'react';
+import { ActionMeta, SingleValue } from 'react-select';
 
 export type InputFieldType = {
   value: string;
@@ -37,7 +38,11 @@ export type SelectType = {
   placeholder?: string;
   className?: string;
   value: number;
-  handler: (evt: React.ChangeEvent<HTMLSelectElement>, key: string) => void;
+  // handler: (evt: React.ChangeEvent<HTMLSelectElement>, key: string) => void;
+  handler: (
+    newValue: SingleValue<OptionsType>,
+    actionMeta: ActionMeta<OptionsType>
+  ) => void;
   onBlur?: () => void;
 };
 
@@ -135,4 +140,13 @@ export type CVType = {
 export type TemplateProps = {
   CV: CVType;
   ref: React.LegacyRef<HTMLDivElement>;
+};
+
+export type CVItemsType = {
+  employments: EmploymentType[];
+  educations: EducationType[];
+  links: SocialLinkType[];
+  skills: SkillType[];
+  courses: CourseType[];
+  languages: LanguageType[];
 };

@@ -8,7 +8,7 @@ type DocumentActionsProps = {
 };
 
 const DocumentActions: FC<DocumentActionsProps> = ({ id }) => {
-  const [deleteCV, { isLoading, isError }] = useDeleteCVMutation();
+  const [deleteCV] = useDeleteCVMutation();
 
   const onClickDelete = () => {
     if (confirm('Do you want to delete CV?')) {

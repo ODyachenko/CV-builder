@@ -23,7 +23,7 @@ const LanguagesForm: FC<LanguageType> = ({ language, level, id }) => {
         <SelectField
           options={languageLevels}
           value={level}
-          handler={(evt) => onChange(evt.value, 'level')}
+          handler={(evt) => onChange(String(evt?.value), 'level')}
           onBlur={onBlur}
           label={t('Level')}
           placeholder="Select level"

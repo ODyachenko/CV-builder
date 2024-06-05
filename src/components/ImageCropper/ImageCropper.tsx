@@ -12,6 +12,7 @@ const ImageCropper: FC = () => {
   const dispatch = useAppDispatch();
 
   const handleImgChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files) return;
     setSrc(URL.createObjectURL(e.target.files[0]));
     setModalOpen(true);
   };

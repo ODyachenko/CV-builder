@@ -1,9 +1,9 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import Select from 'react-select';
 import { SelectType } from '../../../@types';
 
 const colorStyles = {
-  control: (styles: any) => ({
+  control: (styles: object) => ({
     ...styles,
     backgroundColor: '#eff2f9',
     border: 'none',

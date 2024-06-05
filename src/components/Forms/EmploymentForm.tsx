@@ -4,8 +4,6 @@ import TextArea from '../UI/TextArea';
 import { EmploymentType } from '../../../@types';
 import useUpdate from '../../hooks/useUpdate';
 import { useTranslation } from 'react-i18next';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import dayjs from 'dayjs';
 
 const EmploymentForm: FC<EmploymentType> = ({
   id,

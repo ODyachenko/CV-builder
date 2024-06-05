@@ -8,7 +8,7 @@ import { useParams } from 'react-router-dom';
 
 const CVPage: FC = () => {
   const { id } = useParams();
-  const { data, isLoading, error } = useRetrieveCVQuery(id);
+  const { data } = useRetrieveCVQuery(id);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -16,7 +16,7 @@ const CVPage: FC = () => {
   }, [data, dispatch]);
 
   return (
-    <main className="h-screen grid grid-cols-2">
+    <main className="h-screen min-[1220px]:grid min-[1220px]:grid-cols-2">
       <CVEditor />
       <CVPreview />
     </main>

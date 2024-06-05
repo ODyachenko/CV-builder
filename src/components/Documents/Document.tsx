@@ -1,7 +1,7 @@
 import { FC } from 'react';
-import { CVType } from '../../../@types';
 import DocumentActions from './DocumentActions';
 import { Link } from 'react-router-dom';
+import { CVType } from '../../../@types';
 
 const Document: FC<CVType> = ({ id, name }) => {
   return (
@@ -15,9 +15,6 @@ const Document: FC<CVType> = ({ id, name }) => {
       </Link>
       <div>
         <h2 className="text-2xl font-bold mb-2">{name}</h2>
-        {/* <span className="inline-block text-sm text-priamry-gray mb-5">
-          {lastUpdate}
-        </span> */}
         <DocumentActions id={id} />
       </div>
     </li>

@@ -4,7 +4,7 @@ import { useGetCVQuery } from '../../redux/API/CVAPI';
 import { CVType } from '../../../@types';
 
 const DocumentsList: FC = () => {
-  const { data, isLoading, isError } = useGetCVQuery('');
+  const { data } = useGetCVQuery('');
 
   return (
     <ul className="flex flex-wrap justify-center gap-5 sm:grid sm:grid-cols-2">

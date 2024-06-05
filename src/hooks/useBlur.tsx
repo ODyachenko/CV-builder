@@ -2,7 +2,7 @@ import { useAppSelector } from './hooks';
 import { useUpdateCVMutation } from '../redux/API/CVAPI';
 
 const useBlur = () => {
-  const [updateCV, { isLoading, isError }] = useUpdateCVMutation();
+  const [updateCV] = useUpdateCVMutation();
   const { CV } = useAppSelector((state) => state.CVSLice);
 
   const onBlur = () => {

@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { arrayMove } from '@dnd-kit/sortable';
 import { initialCV } from '../../data/initialValues';
-import { CVType } from '../../../@types';
+import { CVItemsType, CVType } from '../../../@types';
 
 interface CVState {
   CV: CVType;
@@ -35,17 +35,23 @@ export const CVSlice = createSlice({
       state.lineSpacing -= 0.1;
     },
     setDndIndexes: (state, action: PayloadAction<DnDAction>) => {
-      const arrayName = action.payload.arrayName;
-      const oldIndex = state.CV[arrayName].findIndex(
+      const key = action.payload.arrayName;
+      const oldIndex = state.CV[key as keyof CVItemsType].findIndex(
         (item: { id: string | number }) => item.id === action.payload.activeId
       );
-      const newIndex = state.CV[arrayName].findIndex(
+      const newIndex = state.CV[key as keyof CVItemsType].findIndex(
         (item: { id: string | number }) => item.id === action.payload.overId
       );
 
       state.CV = {
         ...state.CV,
-        [arrayName]: arrayMove(state.CV[arrayName], oldIndex, newIndex),
+        [key]: arrayMove(
+          // TODO
+          // @ts-ignore
+          state.CV[key as keyof CVItemsType],
+          oldIndex,
+          newIndex
+        ),
       };
     },
   },
