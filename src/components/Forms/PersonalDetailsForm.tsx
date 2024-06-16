@@ -20,7 +20,7 @@ const PersonalDetailsForm: FC = () => {
   return (
     <form action="" className="mb-10">
       <h2 className="subtitle mb-5">{t('Personal Details')}</h2>
-      <fieldset className="grid grid-cols-2 gap-6">
+      <fieldset className="grid gap-6 sm:grid-cols-2">
         <InputField
           label={t('Job title')}
           value={CV.jobTitle}

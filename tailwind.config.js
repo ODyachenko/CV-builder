@@ -13,6 +13,9 @@ export default {
       aspectRatio: {
         A4: '1 / 1.3',
       },
+      spacing: {
+        'list-width': 'calc(100% - 40px)',
+      },
     },
   },
   plugins: [],

@@ -7,6 +7,7 @@ import {
   decrementLineSpacing,
   incrementLineSpacing,
 } from '../../redux/slices/CVSlice';
+import { useTranslation } from 'react-i18next';
 
 type TemplateInnerProps = {
   handler: () => void;
@@ -14,13 +15,14 @@ type TemplateInnerProps = {
 
 const TemplateInner: FC<TemplateInnerProps> = ({ handler }) => {
   const { lineSpacing } = useAppSelector((state) => state.CVSLice);
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
 
   return (
     <div className="flex items-center justify-between gap-2 mb-8">
       <div className="flex items-center ">
         <button className="flex items-center gap-2 text-white border-r border-solid border-white mr-4 pr-4">
-          <AiOutlineAppstore size={25} /> Select template
+          <AiOutlineAppstore size={25} /> {t('Select template')}
         </button>
         <div className="flex items-center gap-3 text-white">
           <button
@@ -41,7 +43,7 @@ const TemplateInner: FC<TemplateInnerProps> = ({ handler }) => {
         </div>
       </div>
       <div>
-        <Btn handler={handler}>Download PDF</Btn>
+        <Btn handler={handler}>{t('Download PDF')}</Btn>
       </div>
     </div>
   );

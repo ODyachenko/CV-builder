@@ -115,6 +115,7 @@ export type CVBlockType = {
   text?: string;
   name: string;
   children: React.ReactNode;
+  className?: string;
 };
 
 export type CVType = {

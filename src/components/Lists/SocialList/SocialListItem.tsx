@@ -27,7 +27,7 @@ const SocialListItem: FC<SocialListItemProps> = ({ item }) => {
     <div
       ref={setNodeRef}
       style={style}
-      className="bg-white border border-solid border-primary-gray rounded-md mb-4"
+      className="max-w-list-width bg-white border border-solid border-primary-gray rounded-md mb-4 mx-auto md:max-w-full"
     >
       <div className="relative">
         <button
@@ -42,11 +42,13 @@ const SocialListItem: FC<SocialListItemProps> = ({ item }) => {
           className="cursor-pointer transition-all hover:text-primary-blue py-4 px-5"
         >
           <div className="flex items-center justify-between">
-            <div>
+            <div className="w-full">
               <h3 className="font-bold mb-1">
                 {item.label ? item.label : 'Not specified'}
               </h3>
-              <span className="font-light text-priamry-gray">{item.link}</span>
+              <span className="block font-light text-priamry-gray overflow-hidden text-ellipsis">
+                {item.link}
+              </span>
             </div>
             <IoChevronDown size={20} />
           </div>

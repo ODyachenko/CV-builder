@@ -71,6 +71,7 @@ const CVEditor: FC = () => {
       <PersonalDetailsForm />
       <SummaryForm />
       <CVBlock
+        className="mb-10"
         name="employment"
         title={t('Employment History')}
         text={t(
@@ -85,6 +86,7 @@ const CVEditor: FC = () => {
       </CVBlock>
 
       <CVBlock
+        className="mb-10"
         name="education"
         title={t('Education')}
         text={t(
@@ -99,6 +101,7 @@ const CVEditor: FC = () => {
       </CVBlock>
 
       <CVBlock
+        className="mb-10"
         name="link"
         title={t('Websites & Social Links')}
         text={t(
@@ -110,6 +113,7 @@ const CVEditor: FC = () => {
       </CVBlock>
 
       <CVBlock
+        className="mb-10"
         name="skill"
         title={t('Skills')}
         text={t(
@@ -122,7 +126,7 @@ const CVEditor: FC = () => {
           handler={() => createItem('skills', newSkill)}
         />
       </CVBlock>
-      <CVBlock name="courses" title={t('Courses')}>
+      <CVBlock className="mb-10" name="courses" title={t('Courses')}>
         <CourseList list={CV.courses} />
         <CreateBtn
           value="course"

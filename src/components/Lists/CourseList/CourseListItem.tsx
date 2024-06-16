@@ -28,7 +28,7 @@ const CourseListItem: FC<CourseListItemProps> = ({ item }) => {
     <div
       ref={setNodeRef}
       style={style}
-      className="bg-white border border-solid border-primary-gray rounded-md mb-4"
+      className="max-w-list-width bg-white border border-solid border-primary-gray rounded-md mb-4 mx-auto md:max-w-full"
     >
       <div className="relative">
         <button
